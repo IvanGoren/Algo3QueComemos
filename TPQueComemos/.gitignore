@@ -1,5 +1,5 @@
-/bin/
-/generated-sources/
+bin
+generated-sources
 .settings
 .project
 .svn
