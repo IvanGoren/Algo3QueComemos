@@ -4,11 +4,17 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Usuario {
-	long peso
-	long altura
+	double peso
+	double altura
 	
-	def long getIMC(){
-		return 0;
+	new (double elPeso, double laAltura)
+	{
+		peso = elPeso
+		altura = laAltura
+	}
+	
+	def double getIMC(){
+		return peso / Math.pow(altura, 2);
 	}
 	
 }

@@ -11,11 +11,11 @@ class UsuarioTest {
 	
 	@Before 
 	def void init () {
-		unUsuario = new Usuario;
+		unUsuario = new Usuario( 83, 1.88);
 	} 
 	
 	@Test 
 	def void obtieneIMC() {
-		Assert.assertEquals(15, 15)
+		Assert.assertEquals(unUsuario.IMC, 23.48, 0.01)
 	}
 }
