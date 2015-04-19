@@ -1,6 +1,5 @@
 bin
 generated-sources
 .settings
-.project
 .svn
 /target/
