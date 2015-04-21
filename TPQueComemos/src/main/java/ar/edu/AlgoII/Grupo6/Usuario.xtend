@@ -12,45 +12,46 @@ class Usuario {
 	char sexo
 	String nombre
 	Date fechaDeNacimiento
-	List<String> preferencias 
+	List<String> preferencias
 
-	List<CondicionPreexistente> condicionesPreexistentes; 
+	List<CondicionPreexistente> condicionesPreexistentes;
 
-	
-	new (double elPeso, double laAltura)
-	{
+	String rutinaDeEjercicio
+
+	new(double elPeso, double laAltura) {
 		peso = elPeso
 		altura = laAltura
+		fechaDeNacimiento = new Date()
 		preferencias = new ArrayList<String>()
 		condicionesPreexistentes = new ArrayList<CondicionPreexistente>()
 	}
-	
-	def double getIMC(){
+
+	def double getIMC() {
 		return peso / Math.pow(altura, 2);
 	}
-	
+
 	def void validarObligatorios() {
-		if(this.nombre.length <4 ) {
+		if (this.nombre.length < 4) {
 			throw new BusinessException("El nombre debe tener mas de 4 caracteres")
 		}
-		
-		if(this.fechaDeNacimiento >= (new Date())  ) {
-			throw new BusinessException("La fecha de nacimiento debe ser anteior a hoy")
+
+		if (this.fechaDeNacimiento < (new Date())) {
+			throw new BusinessException("La fecha de nacimiento debe ser anterior a hoy")
 		}
-			
-		condicionesPreexistentes.forEach[ 
+
+		condicionesPreexistentes.forEach [
 			it.validarObligatorios(this)
 		]
 	}
-	
+
 	def void validarSexo() {
-		condicionesPreexistentes.forEach[ 
+		condicionesPreexistentes.forEach [
 			it.validarObligatorios(this)
 		]
 	}
-	
-	def void  validarPreferencias() {
-		condicionesPreexistentes.forEach[ 
+
+	def void validarPreferencias() {
+		condicionesPreexistentes.forEach [
 			it.validarObligatorios(this)
 		]
 	}
@@ -59,7 +60,19 @@ class Usuario {
 		validarObligatorios()
 		validarSexo()
 		validarPreferencias()
-	}	
-	
-	
+	}
+
+	def boolean getEsRutinaSaludable() {
+		val imc = getIMC() as double
+
+		if (imc >= 18 && imc <= 30) {
+			return true
+		} else {
+			if (condicionesPreexistentes.length > 0) return false
+			
+			return condicionesPreexistentes.forall[it.getEsRutinaSaludable(this)]
+		}
+
+	}
+
 }

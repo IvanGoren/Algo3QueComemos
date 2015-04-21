@@ -1,23 +1,29 @@
 package ar.edu.AlgoII.Grupo6.Tests
 
 import ar.edu.AlgoII.Grupo6.BusinessException
+import ar.edu.AlgoII.Grupo6.Diabetico
+import ar.edu.AlgoII.Grupo6.Ingrediente
+import ar.edu.AlgoII.Grupo6.Receta
 import ar.edu.AlgoII.Grupo6.Usuario
-import ar.edu.AlgoII.Grupo6.UsuarioDiabetico
+import java.util.Date
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import ar.edu.AlgoII.Grupo6.Azucar
 
 class UsuarioTest {
 
 	Usuario unUsuario
 	Usuario unDiabetico
+	
+	Receta unaReceta
 
 	@Before
 	def void init() {
 		unUsuario = new Usuario(83, 1.88)
 		unDiabetico = new Usuario(83, 1.88)
 
-		unDiabetico.condicionesPreexistentes.add(new UsuarioDiabetico())
+		unDiabetico.condicionesPreexistentes.add(new Diabetico())
 	}
 
 	@Test
@@ -26,9 +32,37 @@ class UsuarioTest {
 	}
 
 	@Test(expected=typeof(BusinessException))
-	def void usaurioConNombreCorto() {
+	def void usuarioConNombreCorto() {
 		unUsuario.nombre = "Jua"
 		unUsuario.validar()
+	}
+
+	@Test
+	def void usuarioDiabeticoValido() {
+		unDiabetico.nombre = "Juan"
+		unDiabetico.fechaDeNacimiento = new Date(1979, 2, 20)
+		unDiabetico.sexo = 'M'
+		unDiabetico.preferencias.add("Pollo")
+		unDiabetico.validar()
+		Assert.assertEquals(unDiabetico.nombre, "Juan")
+	}
+	
+	@Test(expected=typeof(BusinessException))
+	def void usuarioDiabeticoSinFechaDeNacimiento() {
+		unDiabetico.nombre = "Juan"
+		unDiabetico.sexo = 'M'
+		unDiabetico.preferencias.add("Pollo")
+		unDiabetico.validar()
+		Assert.assertEquals(unDiabetico.nombre, "Juan")
+	}
+
+
+	@Test
+	def void crearReceta() {
+		alim = new Alimento("Azucar", Diabetico, 100)
+		
+		unaReceta.ingredientes.add(new Ingrediente(new Alimento("Azucar", ), 100))
+		unaReceta.ingredientes.add(new Ingrediente(new Azucar("Chango"), 100))
 	}
 
 }

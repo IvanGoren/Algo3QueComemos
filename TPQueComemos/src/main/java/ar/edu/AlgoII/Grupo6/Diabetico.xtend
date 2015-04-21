@@ -4,7 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.AlgoII.Grupo6.Usuario
 
 @Accessors
-class UsuarioDiabetico extends CondicionPreexistente {
+class Diabetico extends CondicionPreexistente {
 	
 	
 	override validarSexo(Usuario usuario) {
@@ -22,6 +22,17 @@ class UsuarioDiabetico extends CondicionPreexistente {
 	
 	override validarObligatorios(Usuario usuario) {
 		
+	}
+	
+	override boolean getEsRutinaSaludable(Usuario elUsuario){
+		return (elUsuario.peso < 70)
+	}
+	
+	override  getEsRecetaApta(Receta laReceta)
+	{
+		//recorrer ingredietes.alimentos y ver si hay azucar
+		//si hay chequear si son mas de 100g
+		return true;
 	}
 	
 }
