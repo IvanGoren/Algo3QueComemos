@@ -7,8 +7,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 class Receta {
 	String nombre
-	List<Ingredientes> ingredientes
-	List<Ingredientes> condimentos
+	List<Ingrediente> ingredientes
+	List<Ingrediente> condimentos
 	List<String> pasos
 	int calorias
 	String dificultad

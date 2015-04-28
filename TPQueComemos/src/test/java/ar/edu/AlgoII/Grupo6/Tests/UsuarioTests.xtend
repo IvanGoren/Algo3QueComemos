@@ -2,14 +2,12 @@ package ar.edu.AlgoII.Grupo6.Tests
 
 import ar.edu.AlgoII.Grupo6.BusinessException
 import ar.edu.AlgoII.Grupo6.Diabetico
-import ar.edu.AlgoII.Grupo6.Ingrediente
 import ar.edu.AlgoII.Grupo6.Receta
 import ar.edu.AlgoII.Grupo6.Usuario
 import java.util.Date
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import ar.edu.AlgoII.Grupo6.Azucar
 
 class UsuarioTest {
 
@@ -57,12 +55,12 @@ class UsuarioTest {
 	}
 
 
-	@Test
-	def void crearReceta() {
-		alim = new Alimento("Azucar", Diabetico, 100)
-		
-		unaReceta.ingredientes.add(new Ingrediente(new Alimento("Azucar", ), 100))
-		unaReceta.ingredientes.add(new Ingrediente(new Azucar("Chango"), 100))
-	}
+//	@Test
+//	def void crearReceta() {
+//		alim = new Alimento("Azucar", Diabetico, 100)
+//		
+//		unaReceta.ingredientes.add(new Ingrediente(new Alimento("Azucar", ), 100))
+//		unaReceta.ingredientes.add(new Ingrediente(new Azucar("Chango"), 100))
+//	}
 
 }
