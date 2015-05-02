@@ -5,14 +5,25 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 
-class Receta {
+class Receta implements IComponente {
 	String nombre
-	List<Ingrediente> ingredientes
-	List<Ingrediente> condimentos
+	List<IComponente> ingredientes
 	List<String> pasos
 	int calorias
 	String dificultad
 	String temporada
-	Receta recetaBase
-	Usuario usuarioCarga
+	RecetaAcceso acceso
+	
+	override verSiTiene(Alimento unAlimento, double unaCantidad) {
+		return ingredientes.forall[it.verSiTiene(unAlimento, unaCantidad) ]
 	}
+	
+	def boolean puedeVerme(Usuario unUsuario) {
+		return acceso.puedeVerme(unUsuario)
+	}
+	
+	def boolean puedeModificarme(Usuario unUsuario) {
+		return acceso.puedeModificarme(unUsuario)
+	}
+	
+}

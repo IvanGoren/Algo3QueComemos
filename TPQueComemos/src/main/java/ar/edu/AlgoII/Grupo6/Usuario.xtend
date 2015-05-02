@@ -46,7 +46,7 @@ class Usuario {
 
 	def void validarSexo() {
 		condicionesPreexistentes.forEach [
-			it.validarObligatorios(this)
+			it.validarSexo(this)
 		]
 	}
 

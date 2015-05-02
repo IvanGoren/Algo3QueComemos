@@ -6,47 +6,61 @@ import ar.edu.AlgoII.Grupo6.Usuario
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import ar.edu.AlgoII.Grupo6.RecetaAccesoPublico
+import ar.edu.AlgoII.Grupo6.RecetaAccesoPrivado
 
 class Punto4Test {
 	
 	Usuario unUsuario
+	Usuario otroUsuario
 	
-	Receta unaReceta
+	
+	Receta unaRecetaDeUnUsuario
+	Receta unaRecetaDeOtroUsuario
+	Receta unaRecetaPublica
 
 	@Before
 	def void init() {
 		unUsuario = new Usuario(83, 1.88)
+		unaRecetaDeUnUsuario = new Receta()
+		unaRecetaDeUnUsuario.acceso = new RecetaAccesoPrivado(unUsuario)
+
+		unaRecetaPublica = new Receta()
+		unaRecetaPublica.acceso = new RecetaAccesoPublico()
+
+		otroUsuario = new Usuario(83, 1.88)
+		unaRecetaDeOtroUsuario = new Receta()
+		unaRecetaDeOtroUsuario.acceso = new RecetaAccesoPrivado(otroUsuario)
 	}
 
 	@Test
 	def void verRecetaPropia() {
-		throw new UnsupportedOperationException()
+		Assert.assertTrue(unaRecetaDeUnUsuario.puedeVerme(unUsuario))
 	}
 
 	@Test
 	def void verRecetaPublica() {
-		throw new UnsupportedOperationException()
+		Assert.assertTrue(unaRecetaPublica.puedeVerme(unUsuario))
 	}
 	
-	@Test(expected=typeof(BusinessException))
+	@Test
 	def void verRecetaAjena() {
-		//Assert.assertEquals(unUsuario.getIMC(), 23.48, 0.01)
-		throw new UnsupportedOperationException()
+		Assert.assertFalse(unaRecetaDeOtroUsuario.puedeVerme(unUsuario))
 	}
 
-@Test
+	@Test
 	def void modificarRecetaPropia() {
-		throw new UnsupportedOperationException()
+		Assert.assertTrue(unaRecetaDeUnUsuario.puedeModificarme(unUsuario))
 	}
 
 	@Test
 	def void modificarRecetaPublica() {
-		throw new UnsupportedOperationException()
+		Assert.assertTrue(unaRecetaPublica.puedeModificarme(unUsuario))
 	}
 	
-	@Test(expected=typeof(BusinessException))
+	@Test
 	def void modificarRecetaAjena() {
-		throw new UnsupportedOperationException()
+		Assert.assertFalse(unaRecetaDeOtroUsuario.puedeModificarme(unUsuario))
 	}
 
 

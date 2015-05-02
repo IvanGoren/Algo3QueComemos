@@ -30,9 +30,11 @@ class Diabetico extends CondicionPreexistente {
 	
 	override  getEsRecetaApta(Receta laReceta)
 	{
-		//recorrer ingredietes.alimentos y ver si hay azucar
+		//recorrer ingredietes y ver si hay azucar
 		//si hay chequear si son mas de 100g
-		return true;
+		
+		return !laReceta.verSiTiene(Alimento.AZUCAR, 100)
+		
 	}
 	
 }
