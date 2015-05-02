@@ -5,12 +5,12 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Ingrediente implements IComponente{
 	
-	String Nombre
-	Alimento TipoDeAlimento
-	double CantidadEnGr 
+	String nombre
+	Alimento tipoDeAlimento
+	double cantidadEnGr 
 	
 	override verSiTiene(Alimento unAlimento, double unaCantidad) {
-		return (unAlimento == tipoDeAlimento && unaCantidad == CantidadEnGr)
+		return (unAlimento == tipoDeAlimento && unaCantidad == cantidadEnGr)
 	}
 	
 }

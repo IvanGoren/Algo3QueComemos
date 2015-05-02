@@ -52,7 +52,7 @@ class Usuario {
 
 	def void validarPreferencias() {
 		condicionesPreexistentes.forEach [
-			it.validarObligatorios(this)
+			it.validarPreferencias(this)
 		]
 	}
 

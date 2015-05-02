@@ -8,13 +8,13 @@ class Diabetico extends CondicionPreexistente {
 	
 	
 	override validarSexo(Usuario usuario) {
-		if (usuario.sexo != "") {
+		if (usuario.sexo == "") {
 			throw new BusinessException("Debe ingresar el sexo para los usuarios diabeticos")
 		}
 	}
 	
 	override validarPreferencias(Usuario usuario) {
-		if ( usuario.preferencias.length() > 0){
+		if ( usuario.preferencias.length() == 0){
 			throw new BusinessException("Debe ingresar el preferencias para los usuarios diabeticos")
 		}
 		
