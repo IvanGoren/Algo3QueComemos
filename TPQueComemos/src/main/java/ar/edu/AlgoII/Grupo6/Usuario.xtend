@@ -67,7 +67,7 @@ class Usuario {
 		if (imc >= 18 && imc <= 30) {
 			return true
 		} else {
-			if (condicionesPreexistentes.length > 0) return false
+			if (condicionesPreexistentes.length == 0) return false
 			
 			return condicionesPreexistentes.forall[it.getEsRutinaSaludable(this)]
 		}
