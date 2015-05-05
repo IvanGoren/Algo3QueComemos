@@ -13,7 +13,6 @@ class Usuario {
 	String nombre
 	Date fechaDeNacimiento
 	List<String> preferencias
-
 	List<CondicionPreexistente> condicionesPreexistentes;
 
 	String rutinaDeEjercicio

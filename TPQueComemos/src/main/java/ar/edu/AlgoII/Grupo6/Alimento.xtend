@@ -22,7 +22,12 @@ class Alimento {
 			AZUCAR = new Alimento ("AZUCAR")
 		return AZUCAR;
 	} 
-	
+	static Alimento HARINA;
+	static def Alimento getHARINA (){
+		if (HARINA == null) 
+			HARINA = new Alimento ("HARINA")
+		return HARINA;
+	} 	
 
 	String Nombre
 	

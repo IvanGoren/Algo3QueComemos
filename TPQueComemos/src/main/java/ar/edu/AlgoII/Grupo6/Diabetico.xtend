@@ -4,6 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.AlgoII.Grupo6.Usuario
 
 @Accessors
+
 class Diabetico extends CondicionPreexistente {
 	
 	
@@ -25,7 +26,7 @@ class Diabetico extends CondicionPreexistente {
 	}
 	
 	override boolean getEsRutinaSaludable(Usuario elUsuario){
-		return (elUsuario.peso < 70)
+		return (elUsuario.peso < 70 || elUsuario.rutinaDeEjercicio == "ACTIVA" || elUsuario.rutinaDeEjercicio == "INTENSIVA" )
 	}
 	
 	override  getEsRecetaApta(Receta laReceta)
