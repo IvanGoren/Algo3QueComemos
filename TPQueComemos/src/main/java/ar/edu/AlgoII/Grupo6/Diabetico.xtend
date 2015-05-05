@@ -26,7 +26,7 @@ class Diabetico extends CondicionPreexistente {
 	}
 	
 	override boolean getEsRutinaSaludable(Usuario elUsuario){
-		return (elUsuario.peso < 70 || elUsuario.rutinaDeEjercicio == "ACTIVA" || elUsuario.rutinaDeEjercicio == "INTENSIVA" )
+		return (elUsuario.peso < 70 || elUsuario.rutinaDeEjercicio.equals(RutinaEjercicio.ACTIVA) || elUsuario.rutinaDeEjercicio.equals(RutinaEjercicio.INTENSIVA) )
 	}
 	
 	override  getEsRecetaApta(Receta laReceta)

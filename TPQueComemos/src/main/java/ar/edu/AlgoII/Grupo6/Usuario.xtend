@@ -15,7 +15,7 @@ class Usuario {
 	List<String> preferencias
 	List<CondicionPreexistente> condicionesPreexistentes;
 
-	String rutinaDeEjercicio
+	RutinaEjercicio rutinaDeEjercicio
 
 	new(double elPeso, double laAltura) {
 		peso = elPeso
