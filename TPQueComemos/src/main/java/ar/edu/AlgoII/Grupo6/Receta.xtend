@@ -21,14 +21,18 @@ class Receta implements IComponente {
 	} 	
 	
 	override verSiTiene(Alimento unAlimento, double unaCantidad) {
-		return ingredientes.forall[it.verSiTiene(unAlimento, unaCantidad) ]
+		val tiene = ingredientes.exists[it.verSiTiene(unAlimento, unaCantidad) ]
+//		System.out.println("receta tiene? " + tiene);
+		return tiene
 	}
 	
 	def boolean puedeVerme(Usuario unUsuario) {
+		if (acceso == null) throw new IllegalArgumentException ("falta configurar el acceso")
 		return acceso.puedeVerme(unUsuario)
 	}
 	
 	def boolean puedeModificarme(Usuario unUsuario) {
+		if (acceso == null) throw new IllegalArgumentException ("falta configurar el acceso")
 		return acceso.puedeModificarme(unUsuario)
 	}
 	

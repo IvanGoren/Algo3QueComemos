@@ -1,14 +1,14 @@
-package src.test.java.ar.edu.AlgoII.Grupo6.Tests
+package ar.edu.AlgoII.Grupo6.Tests
 
+import ar.edu.AlgoII.Grupo6.Alimento
+import ar.edu.AlgoII.Grupo6.Diabetico
+import ar.edu.AlgoII.Grupo6.Ingrediente
+import ar.edu.AlgoII.Grupo6.Receta
+import ar.edu.AlgoII.Grupo6.RecetaAccesoPublico
+import ar.edu.AlgoII.Grupo6.Usuario
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import src.test.java.ar.edu.AlgoII.Grupo6.Usuario
-import src.test.java.ar.edu.AlgoII.Grupo6.Receta
-import org.junit.Assert
-import src.test.java.ar.edu.AlgoII.Grupo6.Ingrediente
-import src.test.java.ar.edu.AlgoII.Grupo6.Alimento
-import src.test.java.ar.edu.AlgoII.Grupo6.Diabetico
-import src.test.java.ar.edu.AlgoII.Grupo6.RecetaAccesoPublico
 
 class Punto3Test {
 		

@@ -6,15 +6,17 @@ import java.util.List
 import java.util.ArrayList
 
 @Accessors
-class Usuario {
+class Usuario implements IAceptaSugerencias {
 	double peso
 	double altura
 	char sexo
 	String nombre
 	Date fechaDeNacimiento
 	List<String> preferencias
-
-	List<CondicionPreexistente> condicionesPreexistentes;
+	List<String> comidasQueNoGustan
+	List<CondicionPreexistente> condicionesPreexistentes
+	List<Receta> recetasFavoritas
+	List<Grupo> grupos
 
 	String rutinaDeEjercicio
 
@@ -23,7 +25,10 @@ class Usuario {
 		altura = laAltura
 		fechaDeNacimiento = new Date()
 		preferencias = new ArrayList<String>()
+		comidasQueNoGustan = new ArrayList<String>()
 		condicionesPreexistentes = new ArrayList<CondicionPreexistente>()
+		recetasFavoritas = new ArrayList<Receta>()
+		grupos = new ArrayList<Grupo>()
 	}
 
 	def double getIMC() {
@@ -68,11 +73,35 @@ class Usuario {
 		if (imc >= 18 && imc <= 30) {
 			return true
 		} else {
-			if (condicionesPreexistentes.length > 0) return false
-			
+			if(condicionesPreexistentes.length > 0) return false
+
 			return condicionesPreexistentes.forall[it.getEsRutinaSaludable(this)]
 		}
 
+	}
+
+	def boolean getEsRecetaAptaParaMi(Receta unaReceta) {
+		return condicionesPreexistentes.forall[it.getEsRecetaApta(unaReceta)]
+	}
+
+	override getEsSugeridaParaMi(Receta unaReceta) {
+		val ver = unaReceta.puedeVerme(this)
+		val apta = this.getEsRecetaAptaParaMi(unaReceta)
+		val gusta = ! comidasQueNoGustan.exists[unaReceta.verSiTiene(new Alimento(it), 0)]
+
+		//		System.out.println("usuario ");
+		//		System.out.println("ver : " + ver);
+		//		System.out.println("apta : " + apta);
+		//		System.out.println("gusta : " + gusta);
+		return ver && apta && gusta
+	}
+
+	def void agregarAFavoritas(Receta unaReceta) {
+		recetasFavoritas.add(unaReceta)
+	}
+	
+	override getTieneSobrepeso() {
+		return this.getIMC() > 25.0
 	}
 
 }

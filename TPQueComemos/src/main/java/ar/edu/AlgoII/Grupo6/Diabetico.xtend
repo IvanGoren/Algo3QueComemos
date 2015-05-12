@@ -21,7 +21,9 @@ class Diabetico extends CondicionPreexistente {
 	}
 	
 	override validarObligatorios(Usuario usuario) {
-		
+		if ( usuario.fechaDeNacimiento == null){
+			throw new BusinessException("Debe ingresar la fecha de nacimiento para los usuarios diabeticos")
+		}
 	}
 	
 	override boolean getEsRutinaSaludable(Usuario elUsuario){

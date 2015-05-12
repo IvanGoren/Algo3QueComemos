@@ -10,7 +10,11 @@ class Ingrediente implements IComponente{
 	double cantidadEnGr 
 	
 	override verSiTiene(Alimento unAlimento, double unaCantidad) {
-		return (unAlimento == tipoDeAlimento && unaCantidad == cantidadEnGr)
+//		System.out.println("Alimento: " + unAlimento.nombre + " - "+ tipoDeAlimento.nombre);
+//		System.out.println("unaCantidad: " + unaCantidad + " - "+ cantidadEnGr);
+		val tiene = (unAlimento.nombre.equalsIgnoreCase(tipoDeAlimento.nombre ) && cantidadEnGr >= unaCantidad)
+//		System.out.println("ing tiene? " + tiene);
+		return tiene
 	}
 	
 }

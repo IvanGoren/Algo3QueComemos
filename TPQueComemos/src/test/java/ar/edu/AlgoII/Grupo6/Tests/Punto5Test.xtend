@@ -42,6 +42,7 @@ class Punto5Test {
 		bife.cantidadEnGr = 200
 		
 		recetaBifeConPure.ingredientes.add(bife)
+		recetaBifeConPure.ingredientes.add(recetaPure)
 
 	}
 
