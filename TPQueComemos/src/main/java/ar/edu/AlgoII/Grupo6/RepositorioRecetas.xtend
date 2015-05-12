@@ -20,4 +20,13 @@ class RepositorioRecetas {
 		return this.getRecetasVisiblesPor(unUsuario)
 	}
 	
+	def List<Receta> consultarRecetasConFiltros(Usuario unUsuario, List<IFiltroStrategy> filtros){
+		val List<Receta> seed = this.getRecetasVisiblesPor(unUsuario).toList 
+	  	filtros.fold (seed, [acum, f |
+	  		f.filtrar( acum, unUsuario).toList
+	  	])
+	  	
+	  	
+	}
+	
 }

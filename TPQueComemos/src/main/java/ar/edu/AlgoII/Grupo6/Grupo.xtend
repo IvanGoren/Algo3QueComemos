@@ -44,5 +44,10 @@ class Grupo implements IAceptaSugerencias {
 		val sumIMC = participantes.map[s|s.getIMC].reduce[sum, size | sum + size]
 		return (sumIMC / participantes.size) > 25
 	}
+	
+	override getEsRecetaAptaParaMi(Receta unaReceta) {
+		val paraTodos = participantes.forall[it.getEsRecetaAptaParaMi(unaReceta)]
+		return paraTodos
+	}
 
 }

@@ -80,7 +80,7 @@ class Usuario implements IAceptaSugerencias {
 
 	}
 
-	def boolean getEsRecetaAptaParaMi(Receta unaReceta) {
+	override getEsRecetaAptaParaMi(Receta unaReceta) {
 		return condicionesPreexistentes.forall[it.getEsRecetaApta(unaReceta)]
 	}
 
