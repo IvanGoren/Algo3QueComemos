@@ -9,6 +9,8 @@ import ar.edu.AlgoII.Grupo6.Usuario
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import ar.edu.AlgoII.Grupo6.Hipertenso
+import ar.edu.AlgoII.Grupo6.Vegano
 
 class Punto3Test {
 		
@@ -25,13 +27,13 @@ class Punto3Test {
 	@Before
 	def void init() {
 		unUsuarioHipertenso = new Usuario(83, 1.88)
-		//unUsuarioHipertenso.condicionesPreexistentes.add(new Hipertenso)
+		unUsuarioHipertenso.condicionesPreexistentes.add(new Hipertenso)
 		
 		unUsuarioDiabetico = new Usuario(83, 1.88)
 		unUsuarioDiabetico.condicionesPreexistentes.add(new Diabetico)
 		
 		unUsuarioVegano = new Usuario(83, 1.88)
-		//unUsuarioVegano.condicionesPreexistentes.add(new Vegano)
+		unUsuarioVegano.condicionesPreexistentes.add(new Vegano)
 		
 		unaRecetaNoRecomendable = new Receta()
 		unaRecetaNoRecomendable.acceso = new RecetaAccesoPublico()
@@ -48,7 +50,7 @@ class Punto3Test {
 		
 		chivito = new Ingrediente()
 		chivito.nombre = "Chivito"
-		chivito.tipoDeAlimento = new Alimento("CHIVITO")
+		chivito.tipoDeAlimento = new Alimento("CARNE")
 		chivito.cantidadEnGr = 1000
 		
 		unaRecetaNoRecomendable.ingredientes.add(sal)
@@ -75,7 +77,5 @@ class Punto3Test {
 	def void verRecetaNoRecomendableVegano() {
 		Assert.assertFalse(unUsuarioVegano.condicionesPreexistentes.forall[t | t.getEsRecetaApta(unaRecetaNoRecomendable)])
 	}
-	
-	//intento commit
 	
 }
