@@ -76,4 +76,6 @@ class Punto3Test {
 		Assert.assertFalse(unUsuarioVegano.condicionesPreexistentes.forall[t | t.getEsRecetaApta(unaRecetaNoRecomendable)])
 	}
 	
+	//intento commit
+	
 }
