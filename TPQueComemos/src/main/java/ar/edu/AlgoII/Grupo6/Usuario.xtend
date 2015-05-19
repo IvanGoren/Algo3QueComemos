@@ -89,10 +89,6 @@ class Usuario implements IAceptaSugerencias {
 		val apta = this.getEsRecetaAptaParaMi(unaReceta)
 		val gusta = ! comidasQueNoGustan.exists[unaReceta.verSiTiene(new Alimento(it), 0)]
 
-		//		System.out.println("usuario ");
-		//		System.out.println("ver : " + ver);
-		//		System.out.println("apta : " + apta);
-		//		System.out.println("gusta : " + gusta);
 		return ver && apta && gusta
 	}
 
