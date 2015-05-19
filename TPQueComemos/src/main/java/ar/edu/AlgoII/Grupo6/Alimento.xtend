@@ -29,6 +29,13 @@ class Alimento {
 		return HARINA;
 	} 	
 
+	static Alimento SAL;
+	static def Alimento getSAL (){
+		if (SAL == null) 
+			SAL = new Alimento ("SAL")
+		return SAL;
+	} 	
+
 	String Nombre
 	
 	new (String unNombre)
