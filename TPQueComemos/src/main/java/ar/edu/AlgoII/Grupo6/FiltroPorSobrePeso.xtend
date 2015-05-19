@@ -4,17 +4,16 @@ import ar.edu.AlgoII.Grupo6.IFiltro
 
 class FiltroPorSobrePeso implements IFiltro {
 	
-	Iterable<Receta> recetasDecorable
-	IAceptaSugerencias unSugerible
+	IFiltro filtro
 	
-	new (Iterable<Receta> recetas, IAceptaSugerencias elSugerible)
+	new (IFiltro filtro)
 	{
-		recetasDecorable = recetas
-		unSugerible = elSugerible
+		this.filtro = filtro
 	}
 	
-	override filtrar() {
-		recetasDecorable.filter[ !unSugerible.tieneSobrepeso || it.calorias < 500 ]
+	override filtrar(Usuario unUsuario) {
+		filtro.filtrar(unUsuario)
+			.filter[ !unUsuario.tieneSobrepeso || it.calorias < 500 ]
 	}
 	
 }

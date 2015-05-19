@@ -3,18 +3,18 @@ package ar.edu.AlgoII.Grupo6
 import ar.edu.AlgoII.Grupo6.IFiltro
 
 class FiltroPrimeras implements IFiltro {
-	
-	Iterable<Receta> recetasDecorable
+
+	IFiltro filtro
 	int cuantas
-	
-	new (Iterable<Receta> recetas, int cuantas)
+
+	new(IFiltro filtro,int cuantas)
 	{
-		recetasDecorable = recetas
+		this.filtro = filtro
 		this.cuantas = cuantas
 	}
-	
-	override filtrar() {
-		recetasDecorable.take(cuantas)
+	override filtrar(Usuario unUsuario) {
+		filtro.filtrar(unUsuario)
+			.take(cuantas)
 	}
 	
 	

@@ -62,8 +62,8 @@ class E2Punto4Test {
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		val filtradoSobrePeso = new FiltroPorSobrePeso(repo.consultarRecetas(usuarioConSobrepeso), usuarioConSobrepeso)
-		Assert.assertEquals(1, filtradoSobrePeso.filtrar().size)
+		val filtradoSobrePeso = new FiltroPorSobrePeso(repo)
+		Assert.assertEquals(1, filtradoSobrePeso.filtrar( usuarioConSobrepeso).size)
 	}
 
 	@Test
@@ -71,8 +71,8 @@ class E2Punto4Test {
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		val filtradoSobrePeso = new FiltroAptas(repo.consultarRecetas(unUsuario), unUsuario)
-		Assert.assertEquals(3, filtradoSobrePeso.filtrar().size)
+		val filtradoSobrePeso = new FiltroAptas(repo )
+		Assert.assertEquals(3, filtradoSobrePeso.filtrar(unUsuario).size)
 	}
 
 	@Test
@@ -80,8 +80,10 @@ class E2Punto4Test {
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		val filtradoAptas = new FiltroAptas(repo.consultarRecetas(usuarioDiabetico), usuarioDiabetico)
-		Assert.assertEquals(2, filtradoAptas.filtrar().size)
+		val filtradoAptas = new FiltroAptas(repo )
+		Assert.assertEquals(2, filtradoAptas.filtrar(usuarioDiabetico).size)
+		repo.recetas.add(SharedTestComponents.getBifeConPure)
+		Assert.assertEquals(3, filtradoAptas.filtrar(usuarioDiabetico).size)
 	}
 
 	@Test
@@ -90,9 +92,8 @@ class E2Punto4Test {
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		val filtradoSobrePeso = new FiltroPorSobrePeso(
-			(new FiltroAptas(repo.consultarRecetas(usuarioDiabetico), usuarioDiabetico)).filtrar(), usuarioDiabetico)
-		Assert.assertEquals(1, filtradoSobrePeso.filtrar().size)
+		val filtradoSobrePeso = new FiltroPorSobrePeso(new FiltroAptas(repo))
+		Assert.assertEquals(1, filtradoSobrePeso.filtrar(usuarioDiabetico).size)
 	}
 
 }

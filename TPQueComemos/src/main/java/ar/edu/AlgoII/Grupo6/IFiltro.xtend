@@ -1,5 +1,5 @@
 package ar.edu.AlgoII.Grupo6
 
 interface IFiltro {
-	def Iterable<Receta> filtrar()
+	def Iterable<Receta> filtrar(Usuario unUsuario)
 }

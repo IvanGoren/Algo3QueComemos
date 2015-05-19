@@ -4,17 +4,16 @@ import ar.edu.AlgoII.Grupo6.IFiltro
 
 class FiltroAptas implements IFiltro {
 	
-	Iterable<Receta> recetasDecorable
-	IAceptaSugerencias unSugerible
+	IFiltro filtro
 	
-	new (Iterable<Receta> recetas, IAceptaSugerencias elSugerible)
+	new (IFiltro filtro)
 	{
-		recetasDecorable = recetas
-		unSugerible = elSugerible
+		this.filtro = filtro
 	}
 	
-	override filtrar() {
-		recetasDecorable.filter[ unSugerible.getEsRecetaAptaParaMi(it) ]
+	override filtrar( Usuario unUsuario) {
+		filtro.filtrar(unUsuario)
+			.filter[ unUsuario.getEsRecetaAptaParaMi(it) ]
 	}
 	
 	

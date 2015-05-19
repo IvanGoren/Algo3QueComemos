@@ -5,7 +5,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class RepositorioRecetas {
+class RepositorioRecetas implements IFiltro{
 	List<Receta> recetas
 	
 	new () {
@@ -27,6 +27,10 @@ class RepositorioRecetas {
 	  	])
 	  	
 	  	
+	}
+	
+	override filtrar(Usuario unUsuario) {
+		this.getRecetasVisiblesPor(unUsuario)
 	}
 	
 }

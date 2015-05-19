@@ -4,17 +4,17 @@ import ar.edu.AlgoII.Grupo6.IFiltro
 
 class FiltroPares implements IFiltro {
 	
-	Iterable<Receta> recetasDecorable
-
+	IFiltro filtro
 	
-	new (Iterable<Receta> recetas)
+	new (IFiltro filtro)
 	{
-		recetasDecorable = recetas
+		this.filtro = filtro
 	}
 	
-	override filtrar() {
+	
+	override filtrar(Usuario unUsuario) {
 		//TODO : ver como tomar los pares
-		recetasDecorable
+		filtro.filtrar(unUsuario)
 	}
 	
 	
