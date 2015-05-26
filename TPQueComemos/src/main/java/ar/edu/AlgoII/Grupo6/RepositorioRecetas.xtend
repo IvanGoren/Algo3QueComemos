@@ -7,7 +7,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class RepositorioRecetas implements IFiltro{
 	List<Receta> recetas
-	
+	Buscador buscador
 	new () {
 		recetas = new ArrayList<Receta> ()
 	}
@@ -22,8 +22,9 @@ class RepositorioRecetas implements IFiltro{
 	
 	def List<Receta> consultarRecetasConFiltros(Usuario unUsuario, List<IFiltroStrategy> filtros){
 		val List<Receta> seed = this.getRecetasVisiblesPor(unUsuario).toList 
-	  	filtros.fold (seed, [acum, f |
-	  		f.filtrar( acum, unUsuario).toList
+//	  	filtros.fold (seed, [acum, f |
+//	  		f.filtrar( acum, unUsuario).toList
+		buscador.filtrar(unUsuario,seed)
 	  	])
 	  	
 	  	
