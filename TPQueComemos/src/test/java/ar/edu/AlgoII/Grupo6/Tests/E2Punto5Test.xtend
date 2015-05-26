@@ -121,7 +121,7 @@ List<IFiltroStrategy> filtros
 //		filtros.add(new FiltroStrategyPorSobrePeso())
 //		filtros.add(new FiltroStrategyAptas())
 		repo.buscador.filtros.add(new FiltroStrategyAptas())
-		repo.buscador.filtros.add(new FiltroStrategyPorSobrepeso())
+		repo.buscador.filtros.add(new FiltroStrategyPorSobrePeso())
 		Assert.assertEquals(1, repo.consultarRecetasConFiltros(usuarioDiabetico, filtros).size)
 	}
 	

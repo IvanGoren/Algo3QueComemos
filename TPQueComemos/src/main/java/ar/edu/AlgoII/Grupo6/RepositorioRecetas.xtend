@@ -25,10 +25,7 @@ class RepositorioRecetas implements IFiltro{
 //	  	filtros.fold (seed, [acum, f |
 //	  		f.filtrar( acum, unUsuario).toList
 		buscador.filtrar(unUsuario,seed)
-	  	])
-	  	
-	  	
-	}
+	  }
 	
 	override filtrar(Usuario unUsuario) {
 		this.getRecetasVisiblesPor(unUsuario)
