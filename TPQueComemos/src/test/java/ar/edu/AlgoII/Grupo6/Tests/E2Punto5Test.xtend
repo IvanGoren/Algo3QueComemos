@@ -14,6 +14,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import ar.edu.AlgoII.Grupo6.FiltroStrategyPorSobrePeso
+import ar.edu.AlgoII.Grupo6.Buscador
 
 class E2Punto5Test {
 
@@ -38,6 +39,7 @@ List<IFiltroStrategy> filtros
 
 		unGrupo = SharedTestComponents.getGrupoSinPreCondicion()
 		repo = new RepositorioRecetas()
+		repo.buscador = new Buscador
 	}
 
 	@Test
@@ -71,7 +73,8 @@ List<IFiltroStrategy> filtros
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		filtros.add(new FiltroStrategyPorSobrePeso())
+//		filtros.add(new FiltroStrategyPorSobrePeso())
+		repo.buscador.filtros.add(new FiltroStrategyPorSobrePeso())
 		Assert.assertEquals(1, repo.consultarRecetasConFiltros(usuarioConSobrepeso, filtros).size)
 		
 	}
@@ -81,7 +84,8 @@ List<IFiltroStrategy> filtros
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		filtros.add(new FiltroStrategyAptas())
+//		filtros.add(new FiltroStrategyAptas())
+		repo.buscador.filtros.add(new FiltroStrategyAptas())
 		Assert.assertEquals(3, repo.consultarRecetasConFiltros(unUsuario, filtros).size)
 	}
 
@@ -90,7 +94,8 @@ List<IFiltroStrategy> filtros
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		filtros.add(new FiltroStrategyAptas())
+//		filtros.add(new FiltroStrategyAptas())
+		repo.buscador.filtros.add(new FiltroStrategyAptas())
 		Assert.assertEquals(2, repo.consultarRecetasConFiltros(usuarioDiabetico, filtros).size)
 	}
 
@@ -100,8 +105,10 @@ List<IFiltroStrategy> filtros
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		filtros.add(new FiltroStrategyAptas())
-		filtros.add(new FiltroStrategyPorSobrePeso())
+//		filtros.add(new FiltroStrategyAptas())
+//		filtros.add(new FiltroStrategyPorSobrePeso())
+		repo.buscador.filtros.add(new FiltroStrategyAptas())
+		repo.buscador.filtros.add(new FiltroStrategyPorSobrePeso)
 		Assert.assertEquals(1, repo.consultarRecetasConFiltros(usuarioDiabetico, filtros).size)
 	}
 	
@@ -111,8 +118,10 @@ List<IFiltroStrategy> filtros
 		repo.recetas.add(SharedTestComponents.getDulceDeLeche)
 		repo.recetas.add(SharedTestComponents.getPure);
 		repo.recetas.add(SharedTestComponents.getBifeConPure)
-		filtros.add(new FiltroStrategyPorSobrePeso())
-		filtros.add(new FiltroStrategyAptas())
+//		filtros.add(new FiltroStrategyPorSobrePeso())
+//		filtros.add(new FiltroStrategyAptas())
+		repo.buscador.filtros.add(new FiltroStrategyAptas())
+		repo.buscador.filtros.add(new FiltroStrategyPorSobrepeso())
 		Assert.assertEquals(1, repo.consultarRecetasConFiltros(usuarioDiabetico, filtros).size)
 	}
 	
