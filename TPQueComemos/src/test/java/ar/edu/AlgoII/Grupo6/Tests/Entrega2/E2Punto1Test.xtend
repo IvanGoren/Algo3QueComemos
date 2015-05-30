@@ -1,16 +1,14 @@
-package ar.edu.AlgoII.Grupo6.Tests
+package ar.edu.AlgoII.Grupo6.Tests.Entrega2
 
-import ar.edu.AlgoII.Grupo6.Alimento
-import ar.edu.AlgoII.Grupo6.Diabetico
 import ar.edu.AlgoII.Grupo6.Grupo
-import ar.edu.AlgoII.Grupo6.Ingrediente
 import ar.edu.AlgoII.Grupo6.Receta
+import ar.edu.AlgoII.Grupo6.RecetaAccesoPrivado
 import ar.edu.AlgoII.Grupo6.RecetaAccesoPublico
+import ar.edu.AlgoII.Grupo6.Tests.SharedTestComponents
 import ar.edu.AlgoII.Grupo6.Usuario
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import ar.edu.AlgoII.Grupo6.RecetaAccesoPrivado
 
 class E2Punto1Test {
 
@@ -34,10 +32,10 @@ class E2Punto1Test {
 		unGrupo.agregarUsuario(otroUsuario)
 
 		unaReceta = SharedTestComponents.getDulceDeLeche()
-		unaReceta.acceso = new RecetaAccesoPublico()		
+		unaReceta.acceso = new RecetaAccesoPublico()
 		unaRecetaPrivada = SharedTestComponents.getPure()
 		unaRecetaPrivada.acceso = new RecetaAccesoPrivado(otroUsuario)
-		
+
 	}
 
 	@Test
