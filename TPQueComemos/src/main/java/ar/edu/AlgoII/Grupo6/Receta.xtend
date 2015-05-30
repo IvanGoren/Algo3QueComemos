@@ -36,4 +36,6 @@ class Receta implements IComponente {
 		return acceso.puedeModificarme(unUsuario)
 	}
 	
+	
+	
 }
