@@ -100,4 +100,17 @@ class Usuario implements IAceptaSugerencias {
 		return this.getIMC() > 25.0
 	}
 
+	def void modificar(Usuario unUsuario) {
+		this.peso = unUsuario.peso
+		this.altura = unUsuario.altura
+		this.sexo = unUsuario.sexo
+		this.nombre = unUsuario.nombre
+		this.fechaDeNacimiento = unUsuario.fechaDeNacimiento
+		this.preferencias = unUsuario.preferencias
+		this.comidasQueNoGustan = unUsuario.comidasQueNoGustan
+		this.condicionesPreexistentes = unUsuario.condicionesPreexistentes
+		this.recetasFavoritas = unUsuario.recetasFavoritas
+		this.grupos = unUsuario.grupos
+	}
+
 }

@@ -25,7 +25,17 @@ class SharedTestComponents {
 		val unUsuario = new Usuario(120, 1.88)
 		return unUsuario;
 	}
-
+	static def Usuario getUsuarioSinPrecondicionHombre() {
+		val unUsuario = new Usuario(83, 1.88)
+		unUsuario.sexo = "M"
+		return unUsuario;
+	}
+	static def Usuario getUsuarioSinPrecondicionMujer() {
+		val unUsuario = new Usuario(83, 1.88)
+		unUsuario.sexo = "F"
+		return unUsuario;
+	}
+	
 	static def Receta getDulceDeLeche() {
 		return getDulceDeLeche(new RecetaAccesoPublico())
 	}
