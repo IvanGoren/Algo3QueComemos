@@ -39,8 +39,8 @@ class RepositorioRecetasExternas {
 		]
 		postProcesos.forEach[it.ejecutarEstrategia(unUsuario, recetas)];
 		return recetas
-	}
-
+	}   
+	
 	private def List<queComemos.entrega3.dominio.Receta> getRecetasExternas(BusquedaRecetas busquedaRecetas) {
 		val RepoRecetas repoExt = new RepoRecetas()
 		val resp = repoExt.getRecetas(busquedaRecetas)
