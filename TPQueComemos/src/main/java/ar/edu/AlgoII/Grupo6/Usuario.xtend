@@ -17,6 +17,7 @@ class Usuario implements IAceptaSugerencias {
 	List<CondicionPreexistente> condicionesPreexistentes
 	List<Receta> recetasFavoritas
 	List<Grupo> grupos
+	boolean guardarSiempreFavoritas
 
 	RutinaEjercicio rutinaDeEjercicio
 
@@ -29,6 +30,7 @@ class Usuario implements IAceptaSugerencias {
 		condicionesPreexistentes = new ArrayList<CondicionPreexistente>()
 		recetasFavoritas = new ArrayList<Receta>()
 		grupos = new ArrayList<Grupo>()
+		guardarSiempreFavoritas = false
 	}
 
 	def double getIMC() {
@@ -93,7 +95,8 @@ class Usuario implements IAceptaSugerencias {
 	}
 
 	def void agregarAFavoritas(Receta unaReceta) {
-		recetasFavoritas.add(unaReceta)
+		if (!recetasFavoritas.contains(unaReceta))
+			recetasFavoritas.add(unaReceta)
 	}
 	
 	override getTieneSobrepeso() {

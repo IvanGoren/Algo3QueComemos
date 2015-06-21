@@ -14,9 +14,11 @@ class RepositorioRecetasExternas {
 
 	BusquedaRecetas buscador
 	List<IBusquedaObservador> observadores
+	List<Regla> reglas
 
 	new() {
 		observadores = new ArrayList<IBusquedaObservador>()
+		reglas = new ArrayList<Regla>()
 	}
 
 	def List<Receta> consultarRecetas(Usuario unUsuario, BusquedaRecetas busquedaRecetas) {
@@ -27,6 +29,7 @@ class RepositorioRecetasExternas {
 			recetas.add(rec);
 		]
 		observadores.forEach[it.recibirNotificacion(unUsuario, recetas)];
+		reglas.forEach[it.Ejecutar(unUsuario, recetas, busquedaRecetas)];
 		return recetas
 	}
 	
@@ -38,6 +41,7 @@ class RepositorioRecetasExternas {
 			recetas.add(rec);
 		]
 		postProcesos.forEach[it.ejecutarEstrategia(unUsuario, recetas)];
+		reglas.forEach[it.Ejecutar(unUsuario, recetas, busquedaRecetas)];
 		return recetas
 	}   
 	
