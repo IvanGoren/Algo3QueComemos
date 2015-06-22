@@ -6,6 +6,7 @@ import java.util.ArrayList
 class BuilderUsuario {
 	
 	Usuario usuarioCreado
+	char sexo
 	double altura
 	double peso
 	List<CondicionPreexistente> condicionesPreexistentes
@@ -24,6 +25,10 @@ class BuilderUsuario {
 		peso = newPeso
 	}
 	
+	def setSexo(char newSexo) {
+		sexo = newSexo
+	}
+	
 	def newCondicionesPreexistentes(CondicionPreexistente newCondicion) {
 		condicionesPreexistentes.add(newCondicion)
 	}
@@ -37,6 +42,7 @@ class BuilderUsuario {
 		usuarioCreado = new Usuario(altura, peso)
 		usuarioCreado.condicionesPreexistentes.addAll(condicionesPreexistentes)
 		usuarioCreado.rutinaDeEjercicio = rutinaDeEjercicio
+		usuarioCreado.sexo = sexo
 		
 		usuarioCreado
 	} 
