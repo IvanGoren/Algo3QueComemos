@@ -9,32 +9,56 @@ import ar.edu.AlgoII.Grupo6.RecetaAcceso
 import ar.edu.AlgoII.Grupo6.RecetaAccesoPublico
 import ar.edu.AlgoII.Grupo6.Usuario
 import ar.edu.AlgoII.Grupo6.BuilderRecetas
+import ar.edu.AlgoII.Grupo6.BuilderUsuario
 
 class SharedTestComponents {
 	static def Usuario getUsuarioSinPrecondicion() {
-		val unUsuario = new Usuario(83, 1.88)
-		return unUsuario;
+		//val unUsuario = new Usuario(83, 1.88)
+		//return unUsuario;
+		val usuarioBuilder = new BuilderUsuario
+		usuarioBuilder.setAltura(83)
+		usuarioBuilder.setPeso(1.88)
+		usuarioBuilder.build() 
 	}
 
 	static def Usuario getUsuarioDiabetico() {
-		val unUsuario = new Usuario(83, 1.88)
-		unUsuario.condicionesPreexistentes.add(new Diabetico())
-		return unUsuario;
+		//val unUsuario = new Usuario(83, 1.88)
+		//unUsuario.condicionesPreexistentes.add(new Diabetico())
+		//return unUsuario;
+		val usuarioBuilder = new BuilderUsuario
+		usuarioBuilder.setAltura(83)
+		usuarioBuilder.setPeso(1.88)
+		usuarioBuilder.newCondicionesPreexistentes(new Diabetico())
+		usuarioBuilder.build() 
 	}
 
 	static def Usuario getUsuarioConSobrepeso() {
-		val unUsuario = new Usuario(120, 1.88)
-		return unUsuario;
+		//val unUsuario = new Usuario(120, 1.88)
+		//return unUsuario;
+		val usuarioBuilder = new BuilderUsuario
+		usuarioBuilder.setAltura(120)
+		usuarioBuilder.setPeso(1.88)
+		usuarioBuilder.build()
 	}
 	static def Usuario getUsuarioSinPrecondicionHombre() {
-		val unUsuario = new Usuario(83, 1.88)
-		unUsuario.sexo = "M"
-		return unUsuario;
+		//val unUsuario = new Usuario(83, 1.88)
+		//unUsuario.sexo = "M"
+		//return unUsuario;
+		val usuarioBuilder = new BuilderUsuario
+		usuarioBuilder.setAltura(83)
+		usuarioBuilder.setPeso(1.88)
+		usuarioBuilder.setSexo("M")
+		usuarioBuilder.build()
 	}
 	static def Usuario getUsuarioSinPrecondicionMujer() {
-		val unUsuario = new Usuario(83, 1.88)
-		unUsuario.sexo = "F"
-		return unUsuario;
+		//val unUsuario = new Usuario(83, 1.88)
+		//unUsuario.sexo = "F"
+		//return unUsuario;
+		val usuarioBuilder = new BuilderUsuario
+		usuarioBuilder.setAltura(83)
+		usuarioBuilder.setPeso(1.88)
+		usuarioBuilder.setSexo("F")
+		usuarioBuilder.build()
 	}
 	
 	static def Receta getDulceDeLeche() {
