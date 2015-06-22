@@ -8,6 +8,7 @@ import ar.edu.AlgoII.Grupo6.Receta
 import ar.edu.AlgoII.Grupo6.RecetaAcceso
 import ar.edu.AlgoII.Grupo6.RecetaAccesoPublico
 import ar.edu.AlgoII.Grupo6.Usuario
+import ar.edu.AlgoII.Grupo6.BuilderRecetas
 
 class SharedTestComponents {
 	static def Usuario getUsuarioSinPrecondicion() {
@@ -41,8 +42,11 @@ class SharedTestComponents {
 	}
 
 	static def Receta getDulceDeLeche(RecetaAcceso acceso) {
-		val unaReceta = new Receta()
-		unaReceta.acceso = acceso
+		//val unaReceta = new Receta()
+		val recetaBuilder = new BuilderRecetas()
+		
+		//unaReceta.acceso = acceso
+		recetaBuilder.setAcceso(acceso)
 		var Ingrediente azucar = new Ingrediente()
 		azucar.nombre = "Azucar"
 		azucar.tipoDeAlimento = Alimento.AZUCAR
@@ -53,10 +57,14 @@ class SharedTestComponents {
 		leche.tipoDeAlimento = new Alimento("LECHE")
 		leche.cantidadEnGr = 1000
 
-		unaReceta.ingredientes.add(azucar)
-		unaReceta.ingredientes.add(leche)
-		unaReceta.calorias = 1500
-		return unaReceta;
+		//unaReceta.ingredientes.add(azucar)
+		recetaBuilder.agregarIngrediente(azucar)
+		//unaReceta.ingredientes.add(leche)
+		recetaBuilder.agregarIngrediente(leche)
+		//unaReceta.calorias = 1500
+		recetaBuilder.setCalorias(1500)
+		//return unaReceta;
+		recetaBuilder.build()
 	}
 
 	static def Receta getPure() {
@@ -64,8 +72,10 @@ class SharedTestComponents {
 	}
 
 	static def Receta getPure(RecetaAcceso acceso) {
-		val unaReceta = new Receta()
-		unaReceta.acceso = acceso
+		//val unaReceta = new Receta()
+		val recetaBuilder = new BuilderRecetas()
+		//unaReceta.acceso = acceso
+		recetaBuilder.setAcceso(acceso)
 		val papa = new Ingrediente()
 		papa.nombre = "Papa"
 		papa.tipoDeAlimento = new Alimento("PAPA")
@@ -76,10 +86,14 @@ class SharedTestComponents {
 		leche.tipoDeAlimento = new Alimento("LECHE")
 		leche.cantidadEnGr = 500
 
-		unaReceta.ingredientes.add(papa)
-		unaReceta.ingredientes.add(leche)
-		unaReceta.calorias = 100
-		return unaReceta;
+		//unaReceta.ingredientes.add(papa)
+		recetaBuilder.agregarIngrediente(papa)
+		//unaReceta.ingredientes.add(leche)
+		recetaBuilder.agregarIngrediente(leche)
+		//unaReceta.calorias = 100
+		recetaBuilder.setCalorias(100)
+		//return unaReceta;
+		recetaBuilder.build()
 	}
 
 	static def Receta getBifeConPure() {
@@ -88,17 +102,23 @@ class SharedTestComponents {
 	}
 
 	static def Receta getBifeConPure(RecetaAcceso acceso) {
-		val unaReceta = new Receta()
-		unaReceta.acceso = acceso
+		//val unaReceta = new Receta()
+		val recetaBuilder = new BuilderRecetas()
+		//unaReceta.acceso = acceso
+		recetaBuilder.setAcceso(acceso)
 		val bife = new Ingrediente()
 		bife.nombre = "bife"
 		bife.tipoDeAlimento = Alimento.getCARNE()
 		bife.cantidadEnGr = 200
 
-		unaReceta.ingredientes.add(bife)
-		unaReceta.ingredientes.add(getPure())
-		unaReceta.calorias = 1000
-		return unaReceta;
+		//unaReceta.ingredientes.add(bife)
+		recetaBuilder.agregarIngrediente(bife)
+		//unaReceta.ingredientes.add(getPure())
+		recetaBuilder.agregarIngrediente(getPure())
+		//unaReceta.calorias = 1000
+		recetaBuilder.setCalorias(1000)
+		//return unaReceta;
+		recetaBuilder.build()
 	}
 
 	static def Grupo getGrupoSinPreCondicion() {
