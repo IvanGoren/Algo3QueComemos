@@ -20,7 +20,7 @@ class Receta implements IComponente {
 		pasos = new ArrayList<String>()
 	} 	
 	
-	override verSiTiene(Alimento unAlimento, double unaCantidad) {
+ 	override verSiTiene(Alimento unAlimento, double unaCantidad) {
 		val tiene = ingredientes.exists[it.verSiTiene(unAlimento, unaCantidad) ]
 //		System.out.println("receta tiene? " + tiene);
 		return tiene
@@ -37,5 +37,5 @@ class Receta implements IComponente {
 	}
 	
 	
-	
+
 }
