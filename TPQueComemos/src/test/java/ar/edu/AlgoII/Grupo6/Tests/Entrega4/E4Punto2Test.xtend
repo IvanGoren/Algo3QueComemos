@@ -9,7 +9,6 @@ import ar.edu.AlgoII.Grupo6.Usuario
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import ar.edu.AlgoII.Grupo6.BuilderRecetas
 
 class E4Punto2Test {
 

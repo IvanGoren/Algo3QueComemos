@@ -36,6 +36,14 @@ class Alimento {
 		return SAL;
 	} 	
 
+	static Alimento VERDURA;
+	static def Alimento getVERDURA (){
+		if (VERDURA == null) 
+			VERDURA = new Alimento ("VERDURA")
+		return VERDURA;
+	} 	
+
+
 	String Nombre
 	
 	new (String unNombre)

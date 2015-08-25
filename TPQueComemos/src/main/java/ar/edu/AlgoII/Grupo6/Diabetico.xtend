@@ -6,8 +6,11 @@ import ar.edu.AlgoII.Grupo6.Usuario
 @Accessors
 
 class Diabetico extends CondicionPreexistente {
+	String condicion
 	
-	
+	new (){
+		condicion="Diabetico"
+	}
 	override validarSexo(Usuario usuario) {
 		if (usuario.sexo == "") {
 			throw new BusinessException("Debe ingresar el sexo para los usuarios diabeticos")
@@ -34,10 +37,9 @@ class Diabetico extends CondicionPreexistente {
 	override  getEsRecetaApta(Receta laReceta)
 	{
 		//recorrer ingredietes y ver si hay azucar
-		//si hay chequear si son mas de 100g
-		
+		//si hay chequear si son mas de 100g	
 		return !laReceta.verSiTiene(Alimento.AZUCAR, 100)
 		
 	}
-	
+		
 }
