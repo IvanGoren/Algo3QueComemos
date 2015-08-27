@@ -59,5 +59,44 @@ class RepositorioRecetas implements IFiltro {
 		unaReceta.calorias = 1900
 		unaReceta
 	}
+	
+	def getListaRecetasPrueba() {
+		//unaReceta.acceso = new RecetaAccesoPublico
+		var Ingrediente azucar = new Ingrediente()
+		azucar.nombre = "Azucar"
+		azucar.tipoDeAlimento = Alimento.AZUCAR
+		azucar.cantidadEnGr = 350
+		
+		var Ingrediente sal = new Ingrediente()
+		sal.nombre = "Sal"
+		sal.tipoDeAlimento = Alimento.SAL
+		sal.cantidadEnGr = 350
+		
+		val papasFritas = new Receta()
+		papasFritas.nombre = "Papas fritas"
+		papasFritas.temporada = "Todos los dias"
+		papasFritas.dificultad = "Media"
+		papasFritas.ingredientes.add(sal)
+		papasFritas.calorias = 2500
+		
+		
+		val milanesas = new Receta()
+		milanesas.nombre = "Milangas"
+		milanesas.temporada = "Verano"
+		milanesas.dificultad = "Baja"
+		milanesas.ingredientes.add(sal)
+		milanesas.calorias = 2000
+	
+	
+		val polloAlHorno = new Receta()
+		polloAlHorno.nombre = "Pollito al horno, copado"
+		polloAlHorno.temporada = "Otoño"
+		polloAlHorno.dificultad = "Media"
+		polloAlHorno.ingredientes.add(sal)
+		polloAlHorno.calorias = 2800
+
+
+		#[papasFritas, milanesas, polloAlHorno]	
+	}
 
 }
