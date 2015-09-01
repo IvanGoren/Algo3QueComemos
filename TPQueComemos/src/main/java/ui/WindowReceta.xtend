@@ -75,9 +75,9 @@ class WindowReceta extends TransactionalDialog<Receta> {
 			bindContentsToProperty("cantidadEnGr")
 		
 		
-		val miniPanel = new Panel(bodytablesPanel1).setLayout(new HorizontalLayout)
-		var checkfavorita = new CheckBox(miniPanel)
-		new Label(miniPanel).text = "Marcar Favorita"
+//		val miniPanel = new Panel(bodytablesPanel1).setLayout(new HorizontalLayout)
+//		var checkfavorita = new CheckBox(miniPanel)
+//		new Label(miniPanel).text = "Marcar Favorita"
 		
 		
 		val rightBodyPanel = new Panel(bodyPanel)

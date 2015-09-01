@@ -17,14 +17,14 @@ import org.uqbar.arena.widgets.TextBox
 import applicationModel.QueComemosBuscador
 import org.uqbar.arena.widgets.Button
 
-class WindowLogin extends TransactionalDialog<QueComemosBuscador> {
+class WindowCopiarReceta extends TransactionalDialog<QueComemosBuscador> {
 //	new() {
 //		super(new Receta)
 //	}
 
 	new(WindowOwner owner, QueComemosBuscador model) {
 		super(owner, model)
-		title = "Iniciar aplicacion"
+		title = "Copiando Receta"
 	}
 	
 	
@@ -34,13 +34,15 @@ class WindowLogin extends TransactionalDialog<QueComemosBuscador> {
 	
 	
 	override createContents(Panel mainPanel) {
-		new Label(mainPanel).text = "Copiando Receta"
-		
 		val panel1 = new Panel(mainPanel).setLayout(new HorizontalLayout)
-		new Label(panel1).text = "Copiando Receta"
-		new TextBox(panel1)
+		new Label(panel1).text = "Receta:"
+		new Label(panel1).text = "Dulce de Leche con Chocolate"
 		
-		new Button(mainPanel).caption = "Copiar"			
+		val panel2 = new Panel(mainPanel).setLayout(new HorizontalLayout)
+		new Label(panel2).text = "Nombre de copia"
+		new TextBox(panel2)
+		
+		new Button(mainPanel).caption = "Copiar"		
 	}
 		
 }
