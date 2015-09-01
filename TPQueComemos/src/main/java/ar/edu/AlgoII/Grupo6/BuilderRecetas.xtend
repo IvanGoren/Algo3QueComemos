@@ -37,6 +37,7 @@ class BuilderRecetas {
 	}
 
 	def agregarCondimento(IComponente newCondimento) {
+		condimentos.add(newCondimento)
 	}
 
 	def setCalorias(int newCalorias) {
@@ -55,6 +56,7 @@ class BuilderRecetas {
 		recetaCreada.calorias = calorias
 		recetaCreada.nombre = nombre
 		recetaCreada.dificultad = dificultad
+		recetaCreada.temporada = temporada
 		recetaCreada
 	}
 }

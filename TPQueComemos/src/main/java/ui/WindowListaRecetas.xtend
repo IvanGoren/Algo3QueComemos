@@ -27,7 +27,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 	}
 
 	override def createMainTemplate(Panel mainPanel) {
-		title = "Bienvenido a ¿Que comemos hoy?"
+		title = "Que estas buscando?"
 		super.createMainTemplate(mainPanel)
 		this.createGrillaRecetas(mainPanel)
 		this.creatGrillaAcciones(mainPanel)

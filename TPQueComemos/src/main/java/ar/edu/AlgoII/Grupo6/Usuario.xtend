@@ -101,6 +101,9 @@ class Usuario implements IAceptaSugerencias {
 	def void agregarAFavoritas(Receta unaReceta) {
 		if (!recetasFavoritas.contains(unaReceta))
 			recetasFavoritas.add(unaReceta)
+			else{
+				recetasFavoritas.remove(unaReceta)
+			}
 	}
 	
 	override getTieneSobrepeso() {

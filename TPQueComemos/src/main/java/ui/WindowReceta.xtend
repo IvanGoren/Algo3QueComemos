@@ -15,9 +15,6 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.bindings.NotNullObservable
 
 class WindowReceta extends TransactionalDialog<Receta> {
-//	new() {
-//		super(new Receta)
-//	}
 
 	new(WindowOwner owner, Receta model) {
 		super(owner, model)
@@ -26,7 +23,6 @@ class WindowReceta extends TransactionalDialog<Receta> {
 	
 	
 	override protected createFormPanel(Panel mainPanel) {
-//		val form = new Panel(mainPanel).layout = new ColumnLayout(2)
 		 
 		this.createContents(mainPanel)
 	}
@@ -75,11 +71,6 @@ class WindowReceta extends TransactionalDialog<Receta> {
 			bindContentsToProperty("cantidadEnGr")
 		
 		
-//		val miniPanel = new Panel(bodytablesPanel1).setLayout(new HorizontalLayout)
-//		var checkfavorita = new CheckBox(miniPanel)
-//		new Label(miniPanel).text = "Marcar Favorita"
-		
-		
 		val rightBodyPanel = new Panel(bodyPanel)
 		new Label(rightBodyPanel ).text = "Condimentos"
 		var tablaCondimentos = new Table(rightBodyPanel, typeof(Ingrediente))
@@ -104,17 +95,11 @@ class WindowReceta extends TransactionalDialog<Receta> {
 		
 		
 		val footPanel = new Panel(mainPanel)
-//		footPanel.layout = new HorizontalLayout
 		
 		new Label(footPanel).text = "Pasos de la preparacion:"
 		new Label(footPanel).bindValueToProperty("pasos")
 		
 	}
 	
-
-//	def static main(String[] args) {
-//		new WindowReceta().startApplication
-//	}
-
 	
 }

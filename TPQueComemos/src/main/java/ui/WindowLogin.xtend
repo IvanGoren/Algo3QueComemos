@@ -18,9 +18,6 @@ import applicationModel.QueComemosBuscador
 import org.uqbar.arena.widgets.Button
 
 class WindowLogin extends TransactionalDialog<QueComemosBuscador> {
-//	new() {
-//		super(new Receta)
-//	}
 
 	new(WindowOwner owner, QueComemosBuscador model) {
 		super(owner, model)
