@@ -3,6 +3,7 @@ package ui
 import ar.edu.AlgoII.Grupo6.CondicionPreexistente
 import ar.edu.AlgoII.Grupo6.Ingrediente
 import ar.edu.AlgoII.Grupo6.Receta
+import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.CheckBox
@@ -10,9 +11,7 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.bindings.NotNullObservable
 
 class WindowReceta extends TransactionalDialog<Receta> {
 
@@ -95,6 +94,9 @@ class WindowReceta extends TransactionalDialog<Receta> {
 		
 		
 		val footPanel = new Panel(mainPanel)
+		
+		
+//		new CheckBox(footPanel).bindValueToProperty("favorita")
 		
 		new Label(footPanel).text = "Pasos de la preparacion:"
 		new Label(footPanel).bindValueToProperty("pasos")
