@@ -3,7 +3,6 @@ package ui
 import ar.edu.AlgoII.Grupo6.CondicionPreexistente
 import ar.edu.AlgoII.Grupo6.Ingrediente
 import ar.edu.AlgoII.Grupo6.Receta
-import ar.edu.AlgoII.Grupo6.RepositorioRecetas
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.CheckBox
@@ -15,7 +14,7 @@ import org.uqbar.arena.windows.MainWindow
 
 class WindowReceta extends MainWindow<Receta> {
 	new() {
-		super(new RepositorioRecetas().getRecetaPrueba)
+		super(new Receta)
 	}
 	
 	override createContents(Panel mainPanel) {
