@@ -13,6 +13,7 @@ class RepositorioRecetas implements IFiltro {
 
 	new() {
 		recetas = new ArrayList<Receta>()
+		recetas.add(getRecetaPrueba)
 	}
 
 	def Iterable<Receta> getRecetasVisiblesPor(Usuario unUsuario) {

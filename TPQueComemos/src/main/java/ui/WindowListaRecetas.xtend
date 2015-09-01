@@ -98,32 +98,32 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 		val gridReceta = new Table(mainPanel, typeof(Receta)) => [
 			width = 2000
 			height = 200
-			numberVisibleRows = new RepositorioRecetas().getListaRecetasPrueba().size + 1
-			bindItemsToProperty("listaRecetasPrueba")
+			numberVisibleRows = new RepositorioRecetas().recetas.size + 1
+			bindItemsToProperty("recetas")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 150
 			title = "Recetas"
-			bindContentsToProperty("nombre")
+			bindContentsToProperty("recetas.nombre")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 80
 			title = "Calorias"
-			bindContentsToProperty("calorias")
+			bindContentsToProperty("recetas.calorias")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 80
 			title = "Dificultad"
-			bindContentsToProperty("dificultad")
+			bindContentsToProperty("recetas.dificultad")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 250
 			title = "Temporada"
-			bindContentsToProperty("temporada")
+			bindContentsToProperty("recetas.temporada")
 		]
 
 	}
