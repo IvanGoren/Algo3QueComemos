@@ -10,6 +10,7 @@ import org.uqbar.commons.utils.Observable
 class RepositorioRecetas implements IFiltro {
 	List<Receta> recetas
 	Buscador buscador
+	Receta recetaSeleccionada
 
 	new() {
 		recetas = new ArrayList<Receta>()

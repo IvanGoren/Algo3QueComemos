@@ -11,11 +11,26 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
+import org.uqbar.arena.aop.windows.TransactionalDialog
+import org.uqbar.arena.windows.WindowOwner
 
-class WindowReceta extends MainWindow<Receta> {
-	new() {
-		super(new Receta)
+class WindowReceta extends TransactionalDialog<Receta> {
+//	new() {
+//		super(new Receta)
+//	}
+
+	new(WindowOwner owner, Receta model) {
+		super(owner, model)
+		title = "Detalles de la receta"
 	}
+	
+	
+	override protected createFormPanel(Panel mainPanel) {
+//		val form = new Panel(mainPanel).layout = new ColumnLayout(2)
+		 
+		this.createContents(mainPanel)
+	}
+	
 	
 	override createContents(Panel mainPanel) {
 		this.title = "Receta"
@@ -67,9 +82,9 @@ class WindowReceta extends MainWindow<Receta> {
 	}
 	
 
-	def static main(String[] args) {
-		new WindowReceta().startApplication
-	}
+//	def static main(String[] args) {
+//		new WindowReceta().startApplication
+//	}
 
 	
 }

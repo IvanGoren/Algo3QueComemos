@@ -14,12 +14,15 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.windows.Dialog
 
 class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 
 	//	new() {
 	//		super(new RepositorioRecetas())
 	//	}
+
+	
 	new(WindowOwner parent) {
 		super(parent, new RepositorioRecetas())
 
@@ -100,7 +103,7 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 			height = 200
 			numberVisibleRows = new RepositorioRecetas().recetas.size + 1
 			bindItemsToProperty("recetas")
-//			bindValueToProperty("recetaSeleccionada")
+			bindValueToProperty("recetaSeleccionada")
 		]
 
 		new Column<Receta>(gridReceta) => [
@@ -132,7 +135,9 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 	//Metodo para crear Grilla de Acciones//	
 	def creatGrillaAcciones(Panel panelesHorizontales) {
 		new Button(panelesHorizontales) => [
-			onClick = [| 	]
+			onClick = [| 
+				this.openDialog(new WindowReceta(this, modelObject.recetaSeleccionada))
+			]
 			caption = "Ver"
 		]
 
@@ -140,6 +145,11 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 			onClick = [| 	]
 			caption = "Favorita"
 		]
+	}
+	
+	def openDialog(Dialog<?> dialog) {
+//		dialog.onAccept[|modelObject.search]
+		dialog.open
 	}
 
 }
