@@ -100,30 +100,31 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 			height = 200
 			numberVisibleRows = new RepositorioRecetas().recetas.size + 1
 			bindItemsToProperty("recetas")
+//			bindValueToProperty("recetaSeleccionada")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 150
 			title = "Recetas"
-			bindContentsToProperty("recetas.nombre")
+			bindContentsToProperty("nombre")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 80
 			title = "Calorias"
-			bindContentsToProperty("recetas.calorias")
+			bindContentsToProperty("calorias")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 80
 			title = "Dificultad"
-			bindContentsToProperty("recetas.dificultad")
+			bindContentsToProperty("dificultad")
 		]
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 250
 			title = "Temporada"
-			bindContentsToProperty("recetas.temporada")
+			bindContentsToProperty("temporada")
 		]
 
 	}
