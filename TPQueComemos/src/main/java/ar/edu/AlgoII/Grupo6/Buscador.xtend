@@ -17,4 +17,8 @@ class Buscador{
 	  	filtros.fold (seed, [acum, f |	f.filtrar( acum, unUsuario).toList])
 	}
 	
+	def agregarFiltros(Usuario usuario) {
+		filtros.addAll(usuario.filtros)
+	}
+	
 }

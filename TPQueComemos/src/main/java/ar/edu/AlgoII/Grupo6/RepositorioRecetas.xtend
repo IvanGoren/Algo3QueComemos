@@ -13,9 +13,10 @@ class RepositorioRecetas implements IFiltro {
 	Receta recetaSeleccionada
 
 	new() {
-		recetas = new ArrayList<Receta>()
+		recetas = new ArrayList<Receta>
 		recetas.add(getRecetaPrueba)
 		buscador = new Buscador
+
 	}
 
 	def Iterable<Receta> getRecetasVisiblesPor(Usuario unUsuario) {
@@ -24,6 +25,15 @@ class RepositorioRecetas implements IFiltro {
 
 	def Iterable<Receta> consultarRecetas(Usuario unUsuario) {
 		return this.getRecetasVisiblesPor(unUsuario)
+	}
+
+	def List<Receta> buscarPorNombreReceta(String nombreReceta){
+		recetas.filter[r| r.nombre.contains(nombreReceta)].toList
+	}
+
+	def List<Receta> filtrarConFiltrosUsuario(Usuario unUsuario) {
+		buscador.agregarFiltros(unUsuario)
+		this.consultarRecetasConFiltros(unUsuario, unUsuario.filtros)
 	}
 
 	def List<Receta> consultarRecetasConFiltros(Usuario unUsuario, List<IFiltroStrategy> filtros) {
@@ -35,10 +45,10 @@ class RepositorioRecetas implements IFiltro {
 	override filtrar(Usuario unUsuario) {
 		this.getRecetasVisiblesPor(unUsuario)
 	}
-	
+
 	def Receta getRecetaPrueba() {
 		val unaReceta = new Receta()
-		
+
 		unaReceta.acceso = new RecetaAccesoPublico
 		var Ingrediente azucar = new Ingrediente()
 		azucar.nombre = "Azucar"
@@ -59,38 +69,37 @@ class RepositorioRecetas implements IFiltro {
 		unaReceta.ingredientes.add(azucar)
 		unaReceta.ingredientes.add(leche)
 		unaReceta.condimentos.add(chispasChoco)
-		unaReceta.calorias = 1900
+		unaReceta.calorias = 190
 		unaReceta
 	}
-	
+
 	def getListaRecetasPrueba() {
+
 		//unaReceta.acceso = new RecetaAccesoPublico
 		var Ingrediente azucar = new Ingrediente()
 		azucar.nombre = "Azucar"
 		azucar.tipoDeAlimento = Alimento.AZUCAR
 		azucar.cantidadEnGr = 350
-		
+
 		var Ingrediente sal = new Ingrediente()
 		sal.nombre = "Sal"
 		sal.tipoDeAlimento = Alimento.SAL
 		sal.cantidadEnGr = 350
-		
+
 		val papasFritas = new Receta()
 		papasFritas.nombre = "Papas fritas"
 		papasFritas.temporada = "Todos los dias"
 		papasFritas.dificultad = "Media"
 		papasFritas.ingredientes.add(sal)
 		papasFritas.calorias = 2500
-		
-		
+
 		val milanesas = new Receta()
 		milanesas.nombre = "Milangas"
 		milanesas.temporada = "Verano"
 		milanesas.dificultad = "Baja"
 		milanesas.ingredientes.add(sal)
 		milanesas.calorias = 2000
-	
-	
+
 		val polloAlHorno = new Receta()
 		polloAlHorno.nombre = "Pollito al horno, copado"
 		polloAlHorno.temporada = "Otoño"
@@ -98,8 +107,7 @@ class RepositorioRecetas implements IFiltro {
 		polloAlHorno.ingredientes.add(sal)
 		polloAlHorno.calorias = 2800
 
-
-		#[papasFritas, milanesas, polloAlHorno]	
+		#[papasFritas, milanesas, polloAlHorno]
 	}
 
 }

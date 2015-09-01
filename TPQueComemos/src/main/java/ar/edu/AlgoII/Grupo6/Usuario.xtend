@@ -18,7 +18,7 @@ class Usuario implements IAceptaSugerencias {
 	List<Receta> recetasFavoritas
 	List<Grupo> grupos
 	boolean guardarSiempreFavoritas
-
+	List<IFiltroStrategy> filtros
 	RutinaEjercicio rutinaDeEjercicio
 
 	new(double elPeso, double laAltura) {
@@ -31,6 +31,7 @@ class Usuario implements IAceptaSugerencias {
 		recetasFavoritas = new ArrayList<Receta>()
 		grupos = new ArrayList<Grupo>()
 		guardarSiempreFavoritas = false
+		filtros = new ArrayList<IFiltroStrategy> 
 	}
 
 	def double getIMC() {

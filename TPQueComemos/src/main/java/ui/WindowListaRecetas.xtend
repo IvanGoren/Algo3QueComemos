@@ -1,8 +1,9 @@
 package ui
 
+import applicationModel.QueComemosBuscador
 import ar.edu.AlgoII.Grupo6.Receta
-import ar.edu.AlgoII.Grupo6.RepositorioRecetas
 import java.awt.Color
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.CheckBox
@@ -12,27 +13,19 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.windows.Dialog
 
-class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
+class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
-	//	new() {
-	//		super(new RepositorioRecetas())
-	//	}
-
-	
 	new(WindowOwner parent) {
-		super(parent, new RepositorioRecetas())
-
-	//		modelObject.search()
+		super(parent, new QueComemosBuscador())
 	}
 
 	override def createMainTemplate(Panel mainPanel) {
 		title = "Bienvenido a ¿Que comemos hoy?"
 		super.createMainTemplate(mainPanel)
-
 		this.createGrillaRecetas(mainPanel)
 		this.creatGrillaAcciones(mainPanel)
 	}
@@ -47,19 +40,19 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 			foreground = Color.BLUE
 		]
 
-		new TextBox(leftPanel).bindValueToProperty("recetas")
+		new TextBox(leftPanel).bindValueToProperty("nombre")
 
 		new Label(leftPanel) => [
 			text = "Dificultad"
 			foreground = Color.BLUE
 		]
-		new Selector(leftPanel)
+		new Selector(leftPanel).bindValueToProperty("dificultad")
 
 		new Label(leftPanel) => [
 			text = "Que contiene ingrediente"
 			foreground = Color.BLUE
 		]
-		new TextBox(leftPanel).bindValueToProperty("recetas")
+		new TextBox(leftPanel).bindValueToProperty("ingrediente")
 
 		val rightPanel = new Panel(searchFormPanel)
 
@@ -68,32 +61,37 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 			foreground = Color.BLUE
 		]
 
-		new TextBox(rightPanel).bindValueToProperty("recetas")
+		new TextBox(rightPanel).bindValueToProperty("calMin")
 
 		new Label(rightPanel) => [
 			text = "a"
 			foreground = Color.BLUE
 		]
 
-		new TextBox(rightPanel).bindValueToProperty("recetas")
+		new TextBox(rightPanel).bindValueToProperty("calMax")
 
 		new Label(rightPanel) => [
 			text = "Temporada"
 			foreground = Color.BLUE
 		]
-		new Selector(rightPanel)
+		new Selector(rightPanel).bindValueToProperty("temporada")
 
 		new Label(leftPanel) => [
 			text = "Aplicar filtros del perfil de usuario"
 			foreground = Color.BLUE
 		]
 
-		var checkfavorita = new CheckBox(rightPanel)
+		var checkfavorita = new CheckBox(rightPanel).bindValueToProperty("aceptarFiltro")
 
 	}
 
 	override protected addActions(Panel actionsPanel) {
-		new Label(actionsPanel).text = "aca va busqueda"
+		new Button(actionsPanel) => [
+			caption = "Buscar"
+			onClick = [|modelObject.search]
+			setAsDefault
+			disableOnError
+		]
 	}
 
 	//Metodo para crear grilla de recetas//
@@ -101,8 +99,8 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 		val gridReceta = new Table(mainPanel, typeof(Receta)) => [
 			width = 2000
 			height = 200
-			numberVisibleRows = new RepositorioRecetas().recetas.size + 1
-			bindItemsToProperty("recetas")
+			numberVisibleRows = 5
+			bindItemsToProperty("resultado")
 			bindValueToProperty("recetaSeleccionada")
 		]
 
@@ -134,21 +132,26 @@ class WindowListaRecetas extends SimpleWindow<RepositorioRecetas> {
 
 	//Metodo para crear Grilla de Acciones//	
 	def creatGrillaAcciones(Panel panelesHorizontales) {
+		val elementSelected = new NotNullObservable("recetaSeleccionada")
 		new Button(panelesHorizontales) => [
-			onClick = [| 
+			caption = "Ver"
+			onClick = [|
 				this.openDialog(new WindowReceta(this, modelObject.recetaSeleccionada))
 			]
-			caption = "Ver"
+			bindEnabled(elementSelected)
 		]
 
 		new Button(panelesHorizontales) => [
-			onClick = [| 	]
 			caption = "Favorita"
+			onClick[|modelObject.agregarFavorita()]
+			bindEnabled(elementSelected)
 		]
+
 	}
-	
+
 	def openDialog(Dialog<?> dialog) {
-//		dialog.onAccept[|modelObject.search]
+
+		//		dialog.onAccept[|modelObject.search]
 		dialog.open
 	}
 

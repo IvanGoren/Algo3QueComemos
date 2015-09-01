@@ -15,8 +15,6 @@ class RecetaAccesoPrivado extends RecetaAcceso {
 	}
 
 	override puedeVerme(Usuario unUsuario) {
-
-		//return (this.usuarioCarga.equals(unUsuario) )
 		return this.usuarioCarga.equals(unUsuario) ||
 			this.usuarioCarga.grupos.exists(
 				grCarga|unUsuario.grupos.exists(grUsuario|grCarga.nombre.equalsIgnoreCase(grUsuario.nombre)))

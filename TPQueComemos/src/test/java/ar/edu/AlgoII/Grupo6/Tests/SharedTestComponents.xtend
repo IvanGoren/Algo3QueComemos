@@ -39,6 +39,7 @@ class SharedTestComponents {
 		usuarioBuilder.setAltura(120)
 		usuarioBuilder.setPeso(1.88)
 		usuarioBuilder.build()
+		
 	}
 	static def Usuario getUsuarioSinPrecondicionHombre() {
 		//val unUsuario = new Usuario(83, 1.88)
@@ -154,6 +155,10 @@ class SharedTestComponents {
 		unGrupo.agregarUsuario(SharedTestComponents.getUsuarioSinPrecondicion())
 
 		return unGrupo;
+	}
+
+	static def getRecetasPrueba(){
+
 	}
 
 }
