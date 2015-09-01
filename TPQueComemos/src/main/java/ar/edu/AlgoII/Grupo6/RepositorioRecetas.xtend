@@ -1,5 +1,6 @@
 package ar.edu.AlgoII.Grupo6
 
+import ar.edu.AlgoII.Grupo6.Tests.SharedTestComponents
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -11,10 +12,12 @@ class RepositorioRecetas implements IFiltro {
 	List<Receta> recetas
 	Buscador buscador
 	Receta recetaSeleccionada
-
+	List<IBusquedaObservador> buscadores
+	
 	new() {
 		recetas = new ArrayList<Receta>
-		recetas.add(getRecetaPrueba)
+		recetas.add(getRecetaPrueba())
+		recetas.add(SharedTestComponents.getBifeConPure)
 		buscador = new Buscador
 
 	}
@@ -112,6 +115,10 @@ class RepositorioRecetas implements IFiltro {
 		polloAlHorno.calorias = 2800
 
 		#[papasFritas, milanesas, polloAlHorno]
+	}
+	
+	def buscarRecetas(Usuario unUsuario, Integer calMin, Integer calMax, String nombre, String ingrediente, String dificultad, String temporada) {
+				
 	}
 
 }

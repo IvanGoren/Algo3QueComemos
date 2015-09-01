@@ -117,6 +117,7 @@ class SharedTestComponents {
 		recetaBuilder.agregarIngrediente(leche)
 		//unaReceta.calorias = 100
 		recetaBuilder.setCalorias(100)
+		recetaBuilder.setTemporada("Otoño")
 		//return unaReceta;
 		recetaBuilder.build()
 	}
@@ -127,22 +128,18 @@ class SharedTestComponents {
 	}
 
 	static def Receta getBifeConPure(RecetaAcceso acceso) {
-		//val unaReceta = new Receta()
 		val recetaBuilder = new BuilderRecetas()
-		//unaReceta.acceso = acceso
 		recetaBuilder.setAcceso(acceso)
 		val bife = new Ingrediente()
 		bife.nombre = "bife"
 		bife.tipoDeAlimento = Alimento.getCARNE()
 		bife.cantidadEnGr = 200
-
-		//unaReceta.ingredientes.add(bife)
+		recetaBuilder.setDificultad("Simple")
+		recetaBuilder.setNombre("Bife con Pure")
+		recetaBuilder.setDificultad("Mediana")
 		recetaBuilder.agregarIngrediente(bife)
-		//unaReceta.ingredientes.add(getPure())
 		recetaBuilder.agregarIngrediente(getPure())
-		//unaReceta.calorias = 1000
 		recetaBuilder.setCalorias(1000)
-		//return unaReceta;
 		recetaBuilder.build()
 	}
 
