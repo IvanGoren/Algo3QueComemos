@@ -10,9 +10,9 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.bindings.NotNullObservable
 
 class WindowReceta extends TransactionalDialog<Receta> {
 //	new() {
@@ -33,23 +33,41 @@ class WindowReceta extends TransactionalDialog<Receta> {
 	
 	
 	override createContents(Panel mainPanel) {
-		this.title = "Receta"
 		
 		val headPanel = new Panel(mainPanel)
 		new Label(headPanel).bindValueToProperty("nombre")
 		
 		val subHeadPanel = new Panel(headPanel)
 		subHeadPanel.layout= new HorizontalLayout
+		new Label(subHeadPanel).text = "calorias:"
 		new Label(subHeadPanel).bindValueToProperty("calorias")
-		new Label(subHeadPanel).text = "calorias"
+		
+		
+		val subHeadPanel2 = new Panel(headPanel)
+		subHeadPanel2.layout= new HorizontalLayout
+		new Label(subHeadPanel2).text = "creado por:"
+		new Label(subHeadPanel2).text = "vos"
+		
+		
 		
 		val bodyPanel = new Panel(mainPanel)
 		bodyPanel.layout = new ColumnLayout(2)
 		
-		val leftBodyPanel = new Panel(bodyPanel)
-		var tablaIngredientes = new Table(leftBodyPanel, typeof(Ingrediente))
+		new Label(bodyPanel).text = "Dificultad:"
+		new Label(bodyPanel).bindValueToProperty("dificultad")
+		new Label(bodyPanel).text = "Temporada:"
+		new Label(bodyPanel).bindValueToProperty("temporada")
+		
+		
+		
+		val bodytablesPanel1 = new Panel(bodyPanel)
+		new Label(bodytablesPanel1 ).text = "Ingredientes"
+		
+		var tablaIngredientes = new Table(bodytablesPanel1, typeof(Ingrediente))
 		tablaIngredientes.height = 200
 		tablaIngredientes.width = 500
+		tablaIngredientes.numberVisibleRows = 5
+		
 		tablaIngredientes.bindItemsToProperty("ingredientes")
 		new Column<Ingrediente>(tablaIngredientes).setTitle("Ingrediente").setFixedSize(150).
 			bindContentsToProperty("nombre")
@@ -57,28 +75,40 @@ class WindowReceta extends TransactionalDialog<Receta> {
 			bindContentsToProperty("cantidadEnGr")
 		
 		
+		val miniPanel = new Panel(bodytablesPanel1).setLayout(new HorizontalLayout)
+		var checkfavorita = new CheckBox(miniPanel)
+		new Label(miniPanel).text = "Marcar Favorita"
+		
+		
 		val rightBodyPanel = new Panel(bodyPanel)
+		new Label(rightBodyPanel ).text = "Condimentos"
 		var tablaCondimentos = new Table(rightBodyPanel, typeof(Ingrediente))
 		tablaCondimentos.height = 200
-		tablaCondimentos.width = 300
+		tablaCondimentos.width = 500
+		tablaCondimentos.numberVisibleRows = 5
+		
 		tablaCondimentos.bindItemsToProperty("condimentos")
 		new Column<Ingrediente>(tablaCondimentos).setTitle("Condimento").setFixedSize(150).
 			bindContentsToProperty("nombre")
 		new Column<Ingrediente>(tablaCondimentos).setTitle("Cantidad en gramos").setFixedSize(150).
 			bindContentsToProperty("cantidadEnGr")
 
+		new Label(rightBodyPanel ).text = "Condiciones permitidas"
 		var tablaCondiciones = new Table(rightBodyPanel, typeof(CondicionPreexistente))
 		tablaCondiciones.height = 200
 		tablaCondiciones.width = 300
+		tablaCondiciones.numberVisibleRows = 5
 		tablaCondiciones.bindItemsToProperty("condicionesQueCumple")
 		new Column<CondicionPreexistente>(tablaCondiciones).setTitle("Condiciones Aptas").setFixedSize(150).
 			bindContentsToProperty("condicion")	
 		
 		
 		val footPanel = new Panel(mainPanel)
-		footPanel.layout = new HorizontalLayout
-		var checkfavorita = new CheckBox(footPanel)
-		new Label(footPanel).text = "Marcar Favorita"
+//		footPanel.layout = new HorizontalLayout
+		
+		new Label(footPanel).text = "Pasos de la preparacion:"
+		new Label(footPanel).bindValueToProperty("pasos")
+		
 	}
 	
 

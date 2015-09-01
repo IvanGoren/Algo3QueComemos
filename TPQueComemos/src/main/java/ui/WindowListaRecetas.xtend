@@ -21,6 +21,8 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	new(WindowOwner parent) {
 		super(parent, new QueComemosBuscador())
+		
+//		this.openDialog(new WindowLogin(this, new QueComemosBuscador()))
 	}
 
 	override def createMainTemplate(Panel mainPanel) {

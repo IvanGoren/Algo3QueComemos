@@ -4,13 +4,16 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Date
 import java.util.List
 import java.util.ArrayList
+import org.uqbar.commons.utils.Observable
 
 @Accessors
+@Observable
 class Usuario implements IAceptaSugerencias {
 	double peso
 	double altura
 	char sexo
 	String nombre
+	String clave
 	Date fechaDeNacimiento
 	List<String> preferencias
 	List<String> comidasQueNoGustan

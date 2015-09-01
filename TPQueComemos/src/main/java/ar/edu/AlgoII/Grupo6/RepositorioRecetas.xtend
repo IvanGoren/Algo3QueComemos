@@ -70,6 +70,10 @@ class RepositorioRecetas implements IFiltro {
 		unaReceta.ingredientes.add(leche)
 		unaReceta.condimentos.add(chispasChoco)
 		unaReceta.calorias = 190
+		
+		unaReceta.pasos.add("paso1")
+		unaReceta.pasos.add("paso2")
+		unaReceta.pasos.add("paso3")
 		unaReceta
 	}
 
