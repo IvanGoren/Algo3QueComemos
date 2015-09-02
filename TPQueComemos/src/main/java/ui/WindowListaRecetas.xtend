@@ -16,6 +16,9 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import applicationModel.QueComemosDetalles
+import ar.edu.AlgoII.Grupo6.Usuario
+import org.uqbar.arena.layout.HorizontalLayout
 
 class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
@@ -49,7 +52,10 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			text = "Dificultad"
 			foreground = Color.BLUE
 		]
-		new Selector(leftPanel).bindValueToProperty("dificultad")
+		new Selector(leftPanel)=>[
+			bindValueToProperty("dificultad")
+			bindItemsToProperty("dificultades")
+			]
 
 		new Label(leftPanel) => [
 			text = "Que contiene ingrediente"
@@ -77,14 +83,20 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			text = "Temporada"
 			foreground = Color.BLUE
 		]
-		new Selector(rightPanel).bindValueToProperty("temporada")
+		new Selector(rightPanel)=>[
+		bindValueToProperty("temporada")
+		bindItemsToProperty("temporadas")
+		]
+			
 
 		new Label(leftPanel) => [
 			text = "Aplicar filtros del perfil de usuario"
 			foreground = Color.BLUE
 		]
 
-		var checkfavorita = new CheckBox(rightPanel).bindValueToProperty("aceptarFiltro")
+		var checkfavorita = new CheckBox(rightPanel)=>[
+			bindValueToProperty("aceptarFiltro")
+			]
 
 	}
 
@@ -135,20 +147,38 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	//Metodo para crear Grilla de Acciones//	
 	def creatGrillaAcciones(Panel panelesHorizontales) {
+		
+		val panelAcciones = new Panel(panelesHorizontales).setLayout(new HorizontalLayout)
+		
 		val elementSelected = new NotNullObservable("recetaSeleccionada")
-		new Button(panelesHorizontales) => [
+		new Button(panelAcciones) => [
 			caption = "Ver"
 			onClick = [|
-				this.openDialog(new WindowReceta(this, modelObject.recetaSeleccionada))
+				this.openDialog(new WindowReceta(this, 
+					new QueComemosDetalles()=>[
+						usuarioLogIn = modelObject.usuarioLogIn
+						recetaSeleccionada = modelObject.recetaSeleccionada
+						iniFavorita
+					]
+				))
 			]
 			bindEnabled(elementSelected)
 		]
 
-		new Button(panelesHorizontales) => [
+		new Button(panelAcciones) => [
 			caption = "Favorita"
 			onClick[|modelObject.agregarFavorita()]
 			bindEnabled(elementSelected)
 		]
+		
+		new Button(panelesHorizontales)=>[
+			caption = "Salir"
+			background = Color.BLUE
+			width = 300
+			onClick[
+				this.close
+			]
+			]
 
 	}
 

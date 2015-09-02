@@ -12,10 +12,15 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.WindowOwner
+import applicationModel.QueComemosDetalles
+import java.util.ArrayList
+import java.util.List
+import java.awt.Color
+import org.uqbar.arena.widgets.Button
 
-class WindowReceta extends TransactionalDialog<Receta> {
+class WindowReceta extends TransactionalDialog<QueComemosDetalles> {
 
-	new(WindowOwner owner, Receta model) {
+	new(WindowOwner owner, QueComemosDetalles model) {
 		super(owner, model)
 		title = "Detalles de la receta"
 	}
@@ -30,18 +35,18 @@ class WindowReceta extends TransactionalDialog<Receta> {
 	override createContents(Panel mainPanel) {
 		
 		val headPanel = new Panel(mainPanel)
-		new Label(headPanel).bindValueToProperty("nombre")
+		new Label(headPanel).bindValueToProperty("recetaSeleccionada.nombre")
 		
 		val subHeadPanel = new Panel(headPanel)
 		subHeadPanel.layout= new HorizontalLayout
 		new Label(subHeadPanel).text = "calorias:"
-		new Label(subHeadPanel).bindValueToProperty("calorias")
+		new Label(subHeadPanel).bindValueToProperty("recetaSeleccionada.calorias")
 		
 		
 		val subHeadPanel2 = new Panel(headPanel)
 		subHeadPanel2.layout= new HorizontalLayout
 		new Label(subHeadPanel2).text = "creado por:"
-		new Label(subHeadPanel2).text = "vos"
+		new Label(subHeadPanel2).bindValueToProperty("recetaSeleccionada.acceso.usuarioCarga.nombre")
 		
 		
 		
@@ -49,9 +54,9 @@ class WindowReceta extends TransactionalDialog<Receta> {
 		bodyPanel.layout = new ColumnLayout(2)
 		
 		new Label(bodyPanel).text = "Dificultad:"
-		new Label(bodyPanel).bindValueToProperty("dificultad")
+		new Label(bodyPanel).bindValueToProperty("recetaSeleccionada.dificultad")
 		new Label(bodyPanel).text = "Temporada:"
-		new Label(bodyPanel).bindValueToProperty("temporada")
+		new Label(bodyPanel).bindValueToProperty("recetaSeleccionada.temporada")
 		
 		
 		
@@ -63,7 +68,7 @@ class WindowReceta extends TransactionalDialog<Receta> {
 		tablaIngredientes.width = 500
 		tablaIngredientes.numberVisibleRows = 5
 		
-		tablaIngredientes.bindItemsToProperty("ingredientes")
+		tablaIngredientes.bindItemsToProperty("recetaSeleccionada.ingredientes")
 		new Column<Ingrediente>(tablaIngredientes).setTitle("Ingrediente").setFixedSize(150).
 			bindContentsToProperty("nombre")
 		new Column<Ingrediente>(tablaIngredientes).setTitle("Cantidad en gramos").setFixedSize(150).
@@ -77,29 +82,43 @@ class WindowReceta extends TransactionalDialog<Receta> {
 		tablaCondimentos.width = 500
 		tablaCondimentos.numberVisibleRows = 5
 		
-		tablaCondimentos.bindItemsToProperty("condimentos")
+		tablaCondimentos.bindItemsToProperty("recetaSeleccionada.condimentos")
 		new Column<Ingrediente>(tablaCondimentos).setTitle("Condimento").setFixedSize(150).
 			bindContentsToProperty("nombre")
 		new Column<Ingrediente>(tablaCondimentos).setTitle("Cantidad en gramos").setFixedSize(150).
 			bindContentsToProperty("cantidadEnGr")
 
-		new Label(rightBodyPanel ).text = "Condiciones permitidas"
-		var tablaCondiciones = new Table(rightBodyPanel, typeof(CondicionPreexistente))
+		new Label(mainPanel ).text = "Condiciones permitidas"
+		var tablaCondiciones = new Table(mainPanel, typeof(CondicionPreexistente))
 		tablaCondiciones.height = 200
 		tablaCondiciones.width = 300
 		tablaCondiciones.numberVisibleRows = 5
-		tablaCondiciones.bindItemsToProperty("condicionesQueCumple")
+		tablaCondiciones.bindItemsToProperty("recetaSeleccionada.condicionesQueCumple")
 		new Column<CondicionPreexistente>(tablaCondiciones).setTitle("Condiciones Aptas").setFixedSize(150).
 			bindContentsToProperty("condicion")	
 		
 		
+		
+		val panelCheck1 = new Panel(mainPanel).setLayout(new HorizontalLayout)
+		new Label(panelCheck1).text = "Favorita"
+		new CheckBox(panelCheck1)=>[
+			bindValueToProperty("favorita")
+			]
+		
 		val footPanel = new Panel(mainPanel)
-		
-		
-//		new CheckBox(footPanel).bindValueToProperty("favorita")
-		
 		new Label(footPanel).text = "Pasos de la preparacion:"
-		new Label(footPanel).bindValueToProperty("pasos")
+		new Label(footPanel)=>[
+			bindValueToProperty("recetaSeleccionada.pasosToString")
+			background = Color.WHITE
+			height = 150
+		]
+		
+		new Button(mainPanel)=>[
+			caption = "Volver"
+			onClick[
+				this.cancel
+			]
+			]
 		
 	}
 	

@@ -32,6 +32,24 @@ class QueComemosBuscador {
 		repositorio = new RepositorioRecetas
 	}
 	
+	def getDificultades(){
+		var aux = newArrayList
+		aux.add("Baja")
+		aux.add("Media")
+		aux.add("Alta")
+		aux
+	}
+	
+	def getTemporadas(){
+		var aux = newArrayList
+		aux.add("Otoño")
+		aux.add("Invierno")
+		aux.add("Primavera")
+		aux.add("Verano")
+		aux.add("Todos los dias")
+		aux
+	}
+	
 	def void agregarFavorita(){
 		usuarioLogIn.agregarAFavoritas(recetaSeleccionada)
 	}
@@ -48,5 +66,6 @@ class QueComemosBuscador {
 		//			.buscarPorTemporada(temporada, resultado)
 		}
 	}
-
+	
+	
 }

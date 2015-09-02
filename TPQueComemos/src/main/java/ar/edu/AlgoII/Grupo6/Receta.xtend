@@ -47,4 +47,14 @@ class Receta implements IComponente {
 	def void agregarCondicionPrexistente(CondicionPreexistente unaCondicion){
 		condicionesPreexistentes.add(unaCondicion)
 	}
+	
+	def getPasosToString(){
+		if(pasos.size>0)
+		{
+			pasos.join(". ") + "."
+		}else{
+			"no hay pasos disponibles"
+		}
+	}
+
 }

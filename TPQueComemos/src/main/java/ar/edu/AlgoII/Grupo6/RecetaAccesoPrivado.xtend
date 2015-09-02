@@ -5,7 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class RecetaAccesoPrivado extends RecetaAcceso {
 
-	Usuario usuarioCarga
+//	Usuario usuarioCarga
 
 	private new() {
 	}
