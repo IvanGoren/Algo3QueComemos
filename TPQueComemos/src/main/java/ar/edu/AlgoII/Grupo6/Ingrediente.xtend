@@ -16,4 +16,13 @@ class Ingrediente implements IComponente{
 		return tiene
 	}
 	
+	override tieneIngrediente(String nombreBuscado) {
+		if (nombreBuscado.equals(nombre.toLowerCase)){
+			true
+		} else {
+			false
+		}
+	}
+	
+	
 }

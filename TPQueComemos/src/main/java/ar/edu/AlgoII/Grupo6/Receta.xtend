@@ -56,5 +56,9 @@ class Receta implements IComponente {
 			"no hay pasos disponibles"
 		}
 	}
-
+	
+	override tieneIngrediente(String nombre) {
+		ingredientes.exists[i|i.tieneIngrediente(nombre.toLowerCase)]
+	}
+	
 }

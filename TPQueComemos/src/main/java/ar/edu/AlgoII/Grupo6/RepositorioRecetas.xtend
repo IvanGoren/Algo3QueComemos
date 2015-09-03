@@ -13,7 +13,7 @@ class RepositorioRecetas implements IFiltro {
 	Buscador buscador
 	Receta recetaSeleccionada
 	List<IBusquedaObservador> buscadores
-	
+
 	new() {
 		recetas = new ArrayList<Receta>
 		recetas.add(getRecetaPrueba())
@@ -30,8 +30,45 @@ class RepositorioRecetas implements IFiltro {
 		return this.getRecetasVisiblesPor(unUsuario)
 	}
 
-	def List<Receta> buscarPorNombreReceta(String nombreReceta){
-		recetas.filter[r| r.nombre.contains(nombreReceta)].toList
+	def List<Receta> buscarPorNombreReceta(String nombreReceta, List<Receta> resultado) {
+		if (nombreReceta == null) {
+			return resultado
+		} else {
+			return resultado.filter[receta|receta.nombre.contains(nombreReceta)].toList
+		}
+	}
+
+	def List<Receta> buscarPorCalorias(Integer minCal, Integer maxCal, List<Receta> resultado) {
+		if ((minCal == null) && (maxCal == null)) {
+			return resultado
+		} else {
+			return resultado.filter[receta|((receta.calorias > minCal) && (receta.calorias < maxCal))].toList
+		}
+	}
+
+	def List<Receta> buscarPorDificultad(String dificultad, List<Receta> resultado) {
+		if (dificultad == null) {
+			return resultado
+		} else {
+			return resultado.filter[receta|receta.dificultad.equals(dificultad)].toList
+		}
+	}
+
+	def List<Receta> buscarPorTemporada(String temporada, List<Receta> resultado) {
+		if (temporada == null) {
+			return resultado
+		} else {
+			return resultado.filter[receta|receta.temporada.equals(temporada)].toList
+
+		}
+	}
+
+	def List<Receta> buscarPorIngrediente(String ingrediente, List<Receta> resultado) {
+		if (ingrediente == null) {
+			return resultado
+		} else {
+			return resultado.filter[receta|receta.tieneIngrediente(ingrediente)].toList
+		}
 	}
 
 	def List<Receta> filtrarConFiltrosUsuario(Usuario unUsuario) {
@@ -73,7 +110,7 @@ class RepositorioRecetas implements IFiltro {
 		unaReceta.ingredientes.add(leche)
 		unaReceta.condimentos.add(chispasChoco)
 		unaReceta.calorias = 190
-		
+
 		unaReceta.pasos.add("paso1")
 		unaReceta.pasos.add("paso2")
 		unaReceta.pasos.add("paso3")

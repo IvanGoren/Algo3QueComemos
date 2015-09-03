@@ -89,12 +89,12 @@ class QueComemosBuscador {
 		if (aceptarFiltro.equals(true)) {
 			resultado = repositorio.filtrarConFiltrosUsuario(usuarioLogIn)
 		} else {
-			resultado = repositorio.buscarPorNombreReceta(nombre)
-
-		//			.buscarPorIngrediente(ingrediente, resultado)
-		//			.buscarPorCalorias(minCal,maxCal, resultado)
-		//			.buscarPorDificultar(dificultad, resultado)
-		//			.buscarPorTemporada(temporada, resultado)
+			resultado = repositorio.getRecetasVisiblesPor(usuarioLogIn).toList
+			resultado = repositorio.buscarPorNombreReceta(nombre,resultado)
+			resultado = repositorio.buscarPorCalorias(calMin,calMax,resultado)
+			resultado = repositorio.buscarPorDificultad(dificultad,resultado)
+			resultado = repositorio.buscarPorTemporada(temporada,resultado)
+			resultado = repositorio.buscarPorIngrediente(ingrediente,resultado)
 		}
 	}
 	
