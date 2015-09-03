@@ -111,6 +111,7 @@ class WindowReceta extends TransactionalDialog<QueComemosDetalles> {
 			bindValueToProperty("recetaSeleccionada.pasosToString")
 			background = Color.WHITE
 			height = 150
+			width = 1000
 		]
 		
 		new Button(mainPanel)=>[

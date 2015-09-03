@@ -2,15 +2,28 @@ package ar.edu.AlgoII.Grupo6
 
 import java.util.ArrayList
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Accessors
+@Observable
 class RepoUsuarios {
 
-	List<Usuario> usuariosAprobados
-	List<Usuario> usuariosPendientes
+	List<Usuario> usuariosAprobados = newArrayList
+	List<Usuario> usuariosPendientes = newArrayList
+	static RepoUsuarios instance
 
 	new() {
-		usuariosAprobados = new ArrayList<Usuario>()
-		usuariosPendientes = new ArrayList<Usuario>()
+//		usuariosAprobados = new ArrayList<Usuario>()
+//		usuariosPendientes = new ArrayList<Usuario>()
+	}
+	
+	def static RepoUsuarios getInstance(){
+		if(instance==null)
+		{
+			instance = new RepoUsuarios()
+		}
+		instance
 	}
 
 	def void add(Usuario unUsuario) {

@@ -3,7 +3,7 @@ package ar.edu.AlgoII.Grupo6
 class RecetaAccesoPublico extends RecetaAcceso {
 	
 	new(){
-		usuarioCarga = new Usuario(0,0)
+		usuarioCarga = new Usuario(1,1)
 		usuarioCarga.nombre = "Público"
 	}
 

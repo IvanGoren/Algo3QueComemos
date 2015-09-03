@@ -9,6 +9,9 @@ import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.List
+import ar.edu.AlgoII.Grupo6.RepoUsuarios
+import ar.edu.AlgoII.Grupo6.RecetaAccesoPrivado
+import ar.edu.AlgoII.Grupo6.Grupo
 
 @Accessors
 @Observable
@@ -28,8 +31,36 @@ class QueComemosBuscador {
 	new() {
 		resultado = new ArrayList<Receta>
 		usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
+		usuarioLogIn.nombre = "Clark Kent"
 		usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
 		repositorio = new RepositorioRecetas
+		
+		val recetaAux = new Receta()
+		recetaAux.setAcceso(new RecetaAccesoPrivado(usuarioLogIn))
+		recetaAux.nombre = "Receta privada propia"
+		recetaAux.calorias = 9200
+		recetaAux.dificultad ="Media"
+		recetaAux.temporada = "Primavera"
+		repositorio.recetas.add(recetaAux)
+
+		val otroUsuarioDelGrupo = new Usuario(100,1.80)
+		otroUsuarioDelGrupo.nombre = "Lana Lang"
+
+		var miGrupo = new Grupo()
+		miGrupo.nombre = "Grupo Copado"
+		miGrupo.agregarUsuario(otroUsuarioDelGrupo)
+		miGrupo.agregarUsuario(usuarioLogIn)
+
+		val recetaDeOtro = new Receta()
+		recetaDeOtro.setAcceso(new RecetaAccesoPrivado(otroUsuarioDelGrupo))
+		recetaDeOtro.nombre = "Receta privada de otro usuario de mi grupo"
+		recetaDeOtro.calorias = 1200
+		recetaDeOtro.dificultad ="Baja"
+		recetaDeOtro.temporada = "Verano"
+		
+		repositorio.recetas.add(recetaDeOtro)
+		
+		
 	}
 	
 	def getDificultades(){

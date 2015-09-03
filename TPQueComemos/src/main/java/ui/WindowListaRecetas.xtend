@@ -19,6 +19,8 @@ import org.uqbar.arena.windows.WindowOwner
 import applicationModel.QueComemosDetalles
 import ar.edu.AlgoII.Grupo6.Usuario
 import org.uqbar.arena.layout.HorizontalLayout
+import ar.edu.AlgoII.Grupo6.RecetaAcceso
+import ar.edu.AlgoII.Grupo6.RepoUsuarios
 
 class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
@@ -31,6 +33,14 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	override def createMainTemplate(Panel mainPanel) {
 		title = "Que estas buscando?"
+		
+		val panel1 = new Panel(mainPanel).setLayout(new HorizontalLayout)
+		new Label(panel1).text = "Logueado como:"
+		new Label(panel1)=>[
+			bindValueToProperty("usuarioLogIn.nombre")
+			foreground = Color.ORANGE
+			]
+		
 		super.createMainTemplate(mainPanel)
 		this.createGrillaRecetas(mainPanel)
 		this.creatGrillaAcciones(mainPanel)
@@ -114,15 +124,37 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 		val gridReceta = new Table(mainPanel, typeof(Receta)) => [
 			width = 2000
 			height = 200
-			numberVisibleRows = 5
+			numberVisibleRows = 9
 			bindItemsToProperty("resultado")
 			bindValueToProperty("recetaSeleccionada")
 		]
+		
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 150
 			title = "Recetas"
 			bindContentsToProperty("nombre")
+			
+			bindBackground("acceso").transformer =
+				[ Object recibe |
+					if ((recibe as RecetaAcceso).usuarioCarga.equals(modelObject.usuarioLogIn)) 
+					{
+						Color.GREEN
+					}
+					else
+					if(modelObject.usuarioLogIn.grupos.exists[u|u.participantes.exists[
+						p | p.nombre.toLowerCase.contains(
+						(recibe as RecetaAcceso).usuarioCarga.nombre.toLowerCase
+						)
+						
+					]])
+					{
+						Color.BLUE
+					}else
+					{
+						Color.LIGHT_GRAY	
+					} 
+				]
 		]
 
 		new Column<Receta>(gridReceta) => [
