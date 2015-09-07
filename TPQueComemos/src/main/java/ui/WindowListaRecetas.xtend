@@ -17,9 +17,9 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import applicationModel.QueComemosDetalles
-import ar.edu.AlgoII.Grupo6.Usuario
 import org.uqbar.arena.layout.HorizontalLayout
 import ar.edu.AlgoII.Grupo6.RecetaAcceso
+import applicationModel.QueComemosLogin
 import ar.edu.AlgoII.Grupo6.RepoUsuarios
 
 class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
@@ -27,7 +27,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 	new(WindowOwner parent) {
 		super(parent, new QueComemosBuscador())
 		
-//		this.openDialog(new WindowLogin(this, new QueComemosBuscador()))
+		this.openDialog(new WindowLogin(this, new QueComemosLogin()))
 //		this.openDialog(new WindowCopiarReceta(this, new QueComemosBuscador()))
 	}
 

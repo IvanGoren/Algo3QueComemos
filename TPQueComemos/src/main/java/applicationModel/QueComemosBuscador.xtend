@@ -30,9 +30,15 @@ class QueComemosBuscador {
 
 	new() {
 		resultado = new ArrayList<Receta>
+//		usuarioLogIn = RepoUsuarios.getInstance.usuarioLogueado
 		usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
 		usuarioLogIn.nombre = "Clark Kent"
+		if(usuarioLogIn!=null){
+			
+		usuarioLogIn.setAltura(83)
+		usuarioLogIn.setPeso(1.88)
 		usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
+		}
 		repositorio = new RepositorioRecetas
 		
 		val recetaAux = new Receta()
@@ -59,8 +65,6 @@ class QueComemosBuscador {
 		recetaDeOtro.temporada = "Verano"
 		
 		repositorio.recetas.add(recetaDeOtro)
-		
-		
 	}
 	
 	def getDificultades(){

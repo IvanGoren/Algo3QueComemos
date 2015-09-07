@@ -4,6 +4,7 @@ import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
 
 @Accessors
 @Observable
@@ -11,11 +12,11 @@ class RepoUsuarios {
 
 	List<Usuario> usuariosAprobados = newArrayList
 	List<Usuario> usuariosPendientes = newArrayList
+	Usuario usuarioLogueado = null
 	static RepoUsuarios instance
 
 	new() {
-//		usuariosAprobados = new ArrayList<Usuario>()
-//		usuariosPendientes = new ArrayList<Usuario>()
+		this.usuariosDefault()
 	}
 	
 	def static RepoUsuarios getInstance(){
@@ -82,5 +83,35 @@ class RepoUsuarios {
 			usuariosPendientes.remove(usu)
 		}
 	}
-
+	
+	def usuariosDefault(){
+		val user1 = new Usuario(0,0)
+		user1.nombre = "Clark Kent"
+		user1.clave = "cLark"
+		
+		val user2 = new Usuario(0,0)
+		user2.nombre = "Lana Lang"
+		user2.clave = "lAna"
+		
+		val user3 = new Usuario(0,0)
+		user3.nombre = "Lex Luthor"
+		user3.clave = "lEx"
+		
+		usuariosAprobados.add(user1)
+		usuariosAprobados.add(user2)
+		usuariosAprobados.add(user3)
+	}
+	
+	def chequearUsuario(String nombre, String clave){
+		
+		var res = usuariosAprobados.filter[u | u.nombre.equals(nombre) && u.clave.equals(clave)]
+		if (res.size>0)
+		{
+			usuarioLogueado = res.get(0)
+		}else
+		{
+			throw new UserException("Datos incorrectos")
+		}
+	}
+	
 }

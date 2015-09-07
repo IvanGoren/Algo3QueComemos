@@ -1,25 +1,17 @@
 package ui
 
-import ar.edu.AlgoII.Grupo6.CondicionPreexistente
-import ar.edu.AlgoII.Grupo6.Ingrediente
-import ar.edu.AlgoII.Grupo6.Receta
-import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.TextBox
-import applicationModel.QueComemosBuscador
 import org.uqbar.arena.widgets.Button
+import applicationModel.QueComemosLogin
 
-class WindowLogin extends TransactionalDialog<QueComemosBuscador> {
+class WindowLogin extends TransactionalDialog<QueComemosLogin> {
 
-	new(WindowOwner owner, QueComemosBuscador model) {
+	new(WindowOwner owner, QueComemosLogin model) {
 		super(owner, model)
 		title = "Iniciar aplicacion"
 	}
@@ -31,13 +23,32 @@ class WindowLogin extends TransactionalDialog<QueComemosBuscador> {
 	
 	
 	override createContents(Panel mainPanel) {
-		new Label(mainPanel).text = "Copiando Receta"
+		
 		
 		val panel1 = new Panel(mainPanel).setLayout(new HorizontalLayout)
-		new Label(panel1).text = "Copiando Receta"
-		new TextBox(panel1)
+		new Label(panel1).text = "Usuario"
+		new TextBox(panel1).bindValueToProperty("usuario")
 		
-		new Button(mainPanel).caption = "Copiar"			
+		val panel2 = new Panel(mainPanel).setLayout(new HorizontalLayout)
+		
+		new Label(panel2).text = "Clave"
+		new TextBox(panel2).bindValueToProperty("clave")
+		
+		val panel3 = new Panel(mainPanel).setLayout(new HorizontalLayout)
+		new Button(panel3)=>[
+			caption = "Aceptar"
+			setAsDefault
+				onClick[
+					modelObject.checkLogin
+					this.accept
+				]
+			]
+		new Button(panel3)=>[
+			caption = "Cancelar"
+				onClick[
+				this.close
+				]
+			]
 	}
 		
 }
