@@ -27,18 +27,29 @@ class QueComemosBuscador {
 	String temporada
 	List<Receta> resultado
 	boolean aceptarFiltro
-
+	static QueComemosBuscador instance = null
+	
+	static  def QueComemosBuscador getInstance(){
+		if(instance == null)
+		{
+			instance = new QueComemosBuscador
+		}
+		instance
+	}
 	new() {
+	}
+	
+	def init(){
 		resultado = new ArrayList<Receta>
 
-		//		usuarioLogIn = RepoUsuarios.getInstance.usuarioLogueado
-		usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
-		usuarioLogIn.nombre = "Clark Kent"
+		usuarioLogIn = RepoUsuarios.getInstance.usuarioLogueado
 		if (usuarioLogIn != null) {
-
-			usuarioLogIn.setAltura(83)
+			usuarioLogIn.setAltura(120)
 			usuarioLogIn.setPeso(1.88)
 			usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
+		}else{
+			usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
+			usuarioLogIn.nombre = "usuario sin registrar"
 		}
 		repositorio = RepositorioRecetas.getInstance
 
@@ -104,6 +115,7 @@ class QueComemosBuscador {
 	}
 		
 	def void clear(){
+		resultado = newArrayList
 		nombre = null
 		calMin = null
 		calMax = null

@@ -108,6 +108,7 @@ class RepoUsuarios {
 		if (res.size>0)
 		{
 			usuarioLogueado = res.get(0)
+			println("logueando como " + usuarioLogueado.nombre)
 		}else
 		{
 			throw new UserException("Datos incorrectos")

@@ -45,6 +45,7 @@ class WindowCopiarReceta extends TransactionalDialog<QueComemosDetalles> {
 		
 		new Button(mainPanel)=>[
 			caption = "Copiar"
+			setAsDefault
 			onClick[
 				modelObject.copiarReceta
 				this.accept

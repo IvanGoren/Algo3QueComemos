@@ -8,6 +8,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Button
 import applicationModel.QueComemosLogin
+import applicationModel.QueComemosBuscador
 
 class WindowLogin extends TransactionalDialog<QueComemosLogin> {
 
@@ -40,7 +41,8 @@ class WindowLogin extends TransactionalDialog<QueComemosLogin> {
 			setAsDefault
 				onClick[
 					modelObject.checkLogin
-					this.accept
+					QueComemosBuscador.getInstance.init
+					this.close
 				]
 			]
 		new Button(panel3)=>[

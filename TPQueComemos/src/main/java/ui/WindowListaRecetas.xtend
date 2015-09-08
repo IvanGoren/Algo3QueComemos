@@ -25,10 +25,9 @@ import ar.edu.AlgoII.Grupo6.RepoUsuarios
 class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	new(WindowOwner parent) {
-		super(parent, new QueComemosBuscador())
+		super(parent,  QueComemosBuscador.getInstance)
 
 		this.openDialog(new WindowLogin(this, new QueComemosLogin()))
-
 	//		this.openDialog(new WindowCopiarReceta(this, new QueComemosBuscador()))
 	}
 
@@ -117,6 +116,12 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			setAsDefault
 			disableOnError
 		]
+		
+		new Button(actionsPanel) => [
+			caption = "Limpiar"
+			onClick = [|modelObject.clear]
+		]
+		
 	}
 
 	//Metodo para crear grilla de recetas//
@@ -172,12 +177,12 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 	//Metodo para crear Grilla de Acciones//	
 	def creatGrillaAcciones(Panel panelesHorizontales) {
 
-		val panelAcciones = new Panel(panelesHorizontales).setLayout(new HorizontalLayout)
+		val panelAcciones = new Panel(panelesHorizontales).setLayout(new HorizontalLayout).setWidth(480)
 
 		val elementSelected = new NotNullObservable("recetaSeleccionada")
 		new Button(panelAcciones) => [
 			caption = "Ver"
-			width = 200
+			width = 250
 			onClick = [|
 				this.openDialog(
 					new WindowReceta(
@@ -191,17 +196,17 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			]
 			bindEnabled(elementSelected)
 		]
-
+		
 		new Button(panelAcciones) => [
 			caption = "Favorita"
-			width = 210
+			width = 250
 			onClick[|modelObject.agregarFavorita()]
 			bindEnabled(elementSelected)
 		]
 
 		new Button(panelAcciones) => [
 			caption = "Copiar"
-			width = 210
+			width = 220
 			onClick[
 				this.openDialog(
 					new WindowCopiarReceta(
@@ -214,24 +219,21 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			]
 			bindEnabled(elementSelected)
 		]
+		
+		val panelAcciones2 = new Panel(panelesHorizontales).setLayout(new HorizontalLayout)
 
-		new Button(panelesHorizontales) => [
+		new Button(panelAcciones2) => [
 			caption = "Salir"
 			background = Color.BLUE
-			width = 420
+			width = 725
 			onClick[
 				this.close
 			]
-		]
-		new Button(panelesHorizontales) => [
-			caption = "Limpiar"
-			onClick = [|modelObject.clear]
 		]
 
 	}
 
 	def openDialog(Dialog<?> dialog) {
-
 		dialog.onAccept[|modelObject.search]
 		dialog.open
 	}
