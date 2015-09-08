@@ -15,7 +15,7 @@ class QueComemosDetalles {
 	String nuevoNombre = ""
 	
 	def iniFavorita(){
-		favorita = usuarioLogIn.recetasFavoritas.contains(recetaSeleccionada)
+		favorita = usuarioLogIn.recetasFavoritas.exists(r|r.nombre.equals(recetaSeleccionada.nombre))
 	}
 	
 	

@@ -25,10 +25,9 @@ import ar.edu.AlgoII.Grupo6.RepoUsuarios
 class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	new(WindowOwner parent) {
-		super(parent,  QueComemosBuscador.getInstance)
+		super(parent, new QueComemosBuscador)
 
-		this.openDialog(new WindowLogin(this, new QueComemosLogin()))
-	//		this.openDialog(new WindowCopiarReceta(this, new QueComemosBuscador()))
+		this.openDialog(new WindowLogin(this, modelObject))
 	}
 
 	override def createMainTemplate(Panel mainPanel) {
@@ -237,7 +236,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 	}
 
 	def openDialog(Dialog<?> dialog) {
-		dialog.onAccept[|modelObject.search]
+		dialog.onAccept[|]
 		dialog.open
 	}
 

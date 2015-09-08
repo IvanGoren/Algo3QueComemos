@@ -1,8 +1,9 @@
 package applicationModel
 
+import ar.edu.AlgoII.Grupo6.RepoUsuarios
+import ar.edu.AlgoII.Grupo6.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import ar.edu.AlgoII.Grupo6.RepoUsuarios
 
 @Accessors
 @Observable
@@ -12,10 +13,10 @@ class QueComemosLogin {
 	RepoUsuarios repoUsuarios
 	
 	new() {
-		repoUsuarios = RepoUsuarios.getInstance
+
 	}
 	
-	def checkLogin(){
+	def Usuario checkLogin(){
 		repoUsuarios.chequearUsuario(usuario,clave)
 	}
 	

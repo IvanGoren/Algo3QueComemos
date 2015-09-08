@@ -127,13 +127,13 @@ class RepoUsuarios {
 
 }
 	
-	def chequearUsuario(String nombre, String clave){
+	def public Usuario chequearUsuario(String nombre, String clave){
 		
 		var res = usuariosAprobados.filter[u | u.nombre.equals(nombre) && u.clave.equals(clave)]
 		if (res.size>0)
 		{
-			usuarioLogueado = res.get(0)
-			println("logueando como " + usuarioLogueado.nombre)
+//			
+			 res.get(0)
 		}else
 		{
 			throw new UserException("Datos incorrectos")

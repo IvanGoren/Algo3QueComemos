@@ -10,9 +10,9 @@ import org.uqbar.arena.widgets.Button
 import applicationModel.QueComemosLogin
 import applicationModel.QueComemosBuscador
 
-class WindowLogin extends TransactionalDialog<QueComemosLogin> {
+class WindowLogin extends TransactionalDialog<QueComemosBuscador> {
 
-	new(WindowOwner owner, QueComemosLogin model) {
+	new(WindowOwner owner, QueComemosBuscador model) {
 		super(owner, model)
 		title = "Iniciar aplicacion"
 	}
@@ -37,9 +37,7 @@ class WindowLogin extends TransactionalDialog<QueComemosLogin> {
 			caption = "Aceptar"
 			setAsDefault
 			onClick[
-			modelObject.checkLogin
-			QueComemosBuscador.getInstance.init
-			this.close
+			this.accept
 			]
 //			this.accept]
 //			.setAsDefault
@@ -54,9 +52,8 @@ class WindowLogin extends TransactionalDialog<QueComemosLogin> {
 		
 		]
 	}
-//	override executeTask(){	
-//				modelObject.checkLogin
-//				QueComemosBuscador.getInstance.init
-//				this.close
-//}
+	override executeTask(){	
+				modelObject.checkLogin
+				modelObject.init
+}
 }
