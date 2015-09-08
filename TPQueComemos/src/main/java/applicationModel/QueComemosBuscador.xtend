@@ -43,47 +43,18 @@ class QueComemosBuscador {
 	
 	def init(){
 		resultado = new ArrayList<Receta>
-
 		usuarioLogIn = RepoUsuarios.getInstance.usuarioLogueado
-		if (usuarioLogIn != null) {
+		if (usuarioLogIn == null) {
+			usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
 			usuarioLogIn.setAltura(120)
 			usuarioLogIn.setPeso(1.88)
 			usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
-		}else{
-			usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
 			usuarioLogIn.nombre = "usuario sin registrar"
 		}
 		repositorio = RepositorioRecetas.getInstance
 
 		this.getRecetasIniciales(usuarioLogIn)
-
-		//DATOS PARA PRUEBAS//
-
-		val recetaAux = new Receta()
-		recetaAux.setAcceso(new RecetaAccesoPrivado(usuarioLogIn))
-		recetaAux.nombre = "Receta privada propia"
-		recetaAux.calorias = 9200
-		recetaAux.dificultad = "Media"
-		recetaAux.temporada = "Primavera"
-		repositorio.recetas.add(recetaAux)
-
-		val otroUsuarioDelGrupo = new Usuario(100, 1.80)
-		otroUsuarioDelGrupo.nombre = "Lana Lang"
-
-		var miGrupo = new Grupo()
-		miGrupo.nombre = "Grupo Copado"
-		miGrupo.agregarUsuario(otroUsuarioDelGrupo)
-		miGrupo.agregarUsuario(usuarioLogIn)
-
-		val recetaDeOtro = new Receta()
-		recetaDeOtro.setAcceso(new RecetaAccesoPrivado(otroUsuarioDelGrupo))
-		recetaDeOtro.nombre = "Receta privada de otro usuario de mi grupo"
-		recetaDeOtro.calorias = 1200
-		recetaDeOtro.dificultad = "Baja"
-		recetaDeOtro.temporada = "Verano"
-
-		repositorio.recetas.add(recetaDeOtro)
-	}
+}
 
 	def getDificultades() {
 		var aux = newArrayList
@@ -126,21 +97,22 @@ class QueComemosBuscador {
 			resultado.addAll(unUsuario.recetasFavoritas)
 			labelResultado = "Estas son tus recetas favoritas"
 		} else if(usuarioLogIn.ultimasRecetasConsultadas.size>0) {
-			resultado.addAll(unUsuario.ultimasRecetasConsultadas)
 			labelResultado = "Estas son tus ultimas consultas"
+			resultado.addAll(unUsuario.ultimasRecetasConsultadas)
 		} else{
 			labelResultado = "Estas son las recetas TOPs"
 		}
 	}
 		
 	def void clear(){
-		resultado = newArrayList
+//		resultado = new ArrayList<Receta>
 		nombre = null
 		calMin = null
 		calMax = null
 		dificultad = null
 		temporada = null
 		ingrediente = null
+		this.getRecetasIniciales(usuarioLogIn)
 	}
 	
 	def recetaRevisada() {

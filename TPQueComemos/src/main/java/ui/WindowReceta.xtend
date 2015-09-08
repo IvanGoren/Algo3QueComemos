@@ -119,7 +119,7 @@ class WindowReceta extends TransactionalDialog<QueComemosDetalles> {
 		new Button(mainPanel)=>[
 			caption = "Volver"
 			onClick[
-				this.cancel
+				this.accept
 			]
 			]
 		

@@ -126,7 +126,7 @@ class Usuario implements IAceptaSugerencias {
 	}
 	
 	def ultimaConsulta(Receta receta) {
-		
+		ultimasRecetasConsultadas.add(receta)
 	}
 
 }

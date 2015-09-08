@@ -120,6 +120,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 		new Button(actionsPanel) => [
 			caption = "Limpiar"
 			onClick = [|modelObject.clear]
+			
 		]
 		
 	}

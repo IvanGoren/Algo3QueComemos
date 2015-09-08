@@ -49,7 +49,7 @@ class WindowLogin extends TransactionalDialog<QueComemosLogin> {
 		new Button(panel3) => [
 			caption = "Cancelar"
 			onClick[
-				this.close
+				System.exit(0)
 			]
 		
 		]
