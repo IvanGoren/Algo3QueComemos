@@ -26,21 +26,22 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	new(WindowOwner parent) {
 		super(parent, new QueComemosBuscador())
-		
+
 		this.openDialog(new WindowLogin(this, new QueComemosLogin()))
-//		this.openDialog(new WindowCopiarReceta(this, new QueComemosBuscador()))
+
+	//		this.openDialog(new WindowCopiarReceta(this, new QueComemosBuscador()))
 	}
 
 	override def createMainTemplate(Panel mainPanel) {
 		title = "Que estas buscando?"
-		
+
 		val panel1 = new Panel(mainPanel).setLayout(new HorizontalLayout)
 		new Label(panel1).text = "Logueado como:"
-		new Label(panel1)=>[
+		new Label(panel1) => [
 			bindValueToProperty("usuarioLogIn.nombre")
 			foreground = Color.ORANGE
-			]
-		
+		]
+
 		super.createMainTemplate(mainPanel)
 		this.createGrillaRecetas(mainPanel)
 		this.creatGrillaAcciones(mainPanel)
@@ -62,10 +63,10 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			text = "Dificultad"
 			foreground = Color.BLUE
 		]
-		new Selector(leftPanel)=>[
+		new Selector(leftPanel) => [
 			bindValueToProperty("dificultad")
 			bindItemsToProperty("dificultades")
-			]
+		]
 
 		new Label(leftPanel) => [
 			text = "Que contiene ingrediente"
@@ -93,20 +94,19 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			text = "Temporada"
 			foreground = Color.BLUE
 		]
-		new Selector(rightPanel)=>[
-		bindValueToProperty("temporada")
-		bindItemsToProperty("temporadas")
+		new Selector(rightPanel) => [
+			bindValueToProperty("temporada")
+			bindItemsToProperty("temporadas")
 		]
-			
 
 		new Label(leftPanel) => [
 			text = "Aplicar filtros del perfil de usuario"
 			foreground = Color.BLUE
 		]
 
-		var checkfavorita = new CheckBox(rightPanel)=>[
+		var checkfavorita = new CheckBox(rightPanel) => [
 			bindValueToProperty("aceptarFiltro")
-			]
+		]
 
 	}
 
@@ -128,33 +128,25 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			bindItemsToProperty("resultado")
 			bindValueToProperty("recetaSeleccionada")
 		]
-		
 
 		new Column<Receta>(gridReceta) => [
 			fixedSize = 150
 			title = "Recetas"
 			bindContentsToProperty("nombre")
-			
-			bindBackground("acceso").transformer =
-				[ Object recibe |
-					if ((recibe as RecetaAcceso).usuarioCarga.equals(modelObject.usuarioLogIn)) 
-					{
-						Color.GREEN
-					}
-					else
-					if(modelObject.usuarioLogIn.grupos.exists[u|u.participantes.exists[
-						p | p.nombre.toLowerCase.contains(
-						(recibe as RecetaAcceso).usuarioCarga.nombre.toLowerCase
+			bindBackground("acceso").transformer = [ Object recibe |
+				if ((recibe as RecetaAcceso).usuarioCarga.equals(modelObject.usuarioLogIn)) {
+					Color.GREEN
+				} else if (modelObject.usuarioLogIn.grupos.exists[u|
+					u.participantes.exists [ p |
+						p.nombre.toLowerCase.contains(
+							(recibe as RecetaAcceso).usuarioCarga.nombre.toLowerCase
 						)
-						
-					]])
-					{
-						Color.BLUE
-					}else
-					{
-						Color.LIGHT_GRAY	
-					} 
-				]
+					]]) {
+					Color.BLUE
+				} else {
+					Color.LIGHT_GRAY
+				}
+			]
 		]
 
 		new Column<Receta>(gridReceta) => [
@@ -179,21 +171,23 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	//Metodo para crear Grilla de Acciones//	
 	def creatGrillaAcciones(Panel panelesHorizontales) {
-		
+
 		val panelAcciones = new Panel(panelesHorizontales).setLayout(new HorizontalLayout)
-		
+
 		val elementSelected = new NotNullObservable("recetaSeleccionada")
 		new Button(panelAcciones) => [
 			caption = "Ver"
 			width = 200
 			onClick = [|
-				this.openDialog(new WindowReceta(this, 
-					new QueComemosDetalles()=>[
-						usuarioLogIn = modelObject.usuarioLogIn
-						recetaSeleccionada = modelObject.recetaSeleccionada
-						iniFavorita
-					]
-				))
+				this.openDialog(
+					new WindowReceta(
+						this,
+						new QueComemosDetalles() => [
+							usuarioLogIn = modelObject.usuarioLogIn
+							recetaSeleccionada = modelObject.recetaSeleccionada
+							iniFavorita
+						]
+					))
 			]
 			bindEnabled(elementSelected)
 		]
@@ -204,29 +198,35 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			onClick[|modelObject.agregarFavorita()]
 			bindEnabled(elementSelected)
 		]
-		
+
 		new Button(panelAcciones) => [
 			caption = "Copiar"
 			width = 210
 			onClick[
-			this.openDialog(new WindowCopiarReceta(this, 
-					new QueComemosDetalles()=>[
-						recetaSeleccionada = modelObject.recetaSeleccionada
-						usuarioLogIn = modelObject.usuarioLogIn
-					]
+				this.openDialog(
+					new WindowCopiarReceta(
+						this,
+						new QueComemosDetalles() => [
+							recetaSeleccionada = modelObject.recetaSeleccionada
+							usuarioLogIn = modelObject.usuarioLogIn
+						]
 					))
-				]
+			]
 			bindEnabled(elementSelected)
 		]
-		
-		new Button(panelesHorizontales)=>[
+
+		new Button(panelesHorizontales) => [
 			caption = "Salir"
 			background = Color.BLUE
 			width = 420
 			onClick[
 				this.close
 			]
-			]
+		]
+		new Button(panelesHorizontales) => [
+			caption = "Limpiar"
+			onClick = [|modelObject.clear]
+		]
 
 	}
 

@@ -30,26 +30,27 @@ class QueComemosBuscador {
 
 	new() {
 		resultado = new ArrayList<Receta>
-//		usuarioLogIn = RepoUsuarios.getInstance.usuarioLogueado
+
+		//		usuarioLogIn = RepoUsuarios.getInstance.usuarioLogueado
 		usuarioLogIn = SharedTestComponents.getUsuarioConSobrepeso
 		usuarioLogIn.nombre = "Clark Kent"
-		if(usuarioLogIn!=null){
-			
-		usuarioLogIn.setAltura(83)
-		usuarioLogIn.setPeso(1.88)
-		usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
+		if (usuarioLogIn != null) {
+
+			usuarioLogIn.setAltura(83)
+			usuarioLogIn.setPeso(1.88)
+			usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
 		}
 		repositorio = RepositorioRecetas.getInstance
-		
+
 		val recetaAux = new Receta()
 		recetaAux.setAcceso(new RecetaAccesoPrivado(usuarioLogIn))
 		recetaAux.nombre = "Receta privada propia"
 		recetaAux.calorias = 9200
-		recetaAux.dificultad ="Media"
+		recetaAux.dificultad = "Media"
 		recetaAux.temporada = "Primavera"
 		repositorio.recetas.add(recetaAux)
 
-		val otroUsuarioDelGrupo = new Usuario(100,1.80)
+		val otroUsuarioDelGrupo = new Usuario(100, 1.80)
 		otroUsuarioDelGrupo.nombre = "Lana Lang"
 
 		var miGrupo = new Grupo()
@@ -61,21 +62,21 @@ class QueComemosBuscador {
 		recetaDeOtro.setAcceso(new RecetaAccesoPrivado(otroUsuarioDelGrupo))
 		recetaDeOtro.nombre = "Receta privada de otro usuario de mi grupo"
 		recetaDeOtro.calorias = 1200
-		recetaDeOtro.dificultad ="Baja"
+		recetaDeOtro.dificultad = "Baja"
 		recetaDeOtro.temporada = "Verano"
-		
+
 		repositorio.recetas.add(recetaDeOtro)
 	}
-	
-	def getDificultades(){
+
+	def getDificultades() {
 		var aux = newArrayList
 		aux.add("Baja")
 		aux.add("Media")
 		aux.add("Alta")
 		aux
 	}
-	
-	def getTemporadas(){
+
+	def getTemporadas() {
 		var aux = newArrayList
 		aux.add("Otoño")
 		aux.add("Invierno")
@@ -84,8 +85,8 @@ class QueComemosBuscador {
 		aux.add("Todos los dias")
 		aux
 	}
-	
-	def void agregarFavorita(){
+
+	def void agregarFavorita() {
 		usuarioLogIn.agregarAFavoritas(recetaSeleccionada)
 	}
 
@@ -94,13 +95,20 @@ class QueComemosBuscador {
 			resultado = repositorio.filtrarConFiltrosUsuario(usuarioLogIn)
 		} else {
 			resultado = repositorio.getRecetasVisiblesPor(usuarioLogIn).toList
-			resultado = repositorio.buscarPorNombreReceta(nombre,resultado)
-			resultado = repositorio.buscarPorCalorias(calMin,calMax,resultado)
-			resultado = repositorio.buscarPorDificultad(dificultad,resultado)
-			resultado = repositorio.buscarPorTemporada(temporada,resultado)
-			resultado = repositorio.buscarPorIngrediente(ingrediente,resultado)
+			resultado = repositorio.buscarPorNombreReceta(nombre, resultado)
+			resultado = repositorio.buscarPorCalorias(calMin, calMax, resultado)
+			resultado = repositorio.buscarPorDificultad(dificultad, resultado)
+			resultado = repositorio.buscarPorTemporada(temporada, resultado)
+			resultado = repositorio.buscarPorIngrediente(ingrediente, resultado)
 		}
 	}
-	
-	
+		
+	def void clear(){
+		nombre = null
+		calMin = null
+		calMax = null
+		dificultad = null
+		temporada = null
+		ingrediente = null
+	}
 }
