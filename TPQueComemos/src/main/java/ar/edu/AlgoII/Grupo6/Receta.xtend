@@ -65,7 +65,7 @@ class Receta implements IComponente {
 		"A gusto para acompañar"
 	}
 	
-	def Receta getCopia() {
+	def Receta getCopia(Usuario unUsuario) {
 		var aux = new Receta()
 		aux.nombre = nombre
 
@@ -74,7 +74,7 @@ class Receta implements IComponente {
 		aux.calorias = calorias
 		aux.dificultad = dificultad
 		aux.temporada = temporada
-		aux.acceso = acceso
+		aux.acceso = new RecetaAccesoPrivado(unUsuario)
 		aux.condimentos.addAll(condimentos)
 		aux.condicionesPreexistentes = condicionesPreexistentes
 		

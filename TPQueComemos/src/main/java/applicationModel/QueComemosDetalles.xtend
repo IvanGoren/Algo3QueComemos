@@ -32,8 +32,8 @@ class QueComemosDetalles {
 	
 	def copiarReceta(){
 		recetaSeleccionada.nombre = nuevoNombre
-		recetaSeleccionada.acceso.usuarioCarga = usuarioLogIn
-		var Receta copia = recetaSeleccionada.getCopia()
+
+		var Receta copia = recetaSeleccionada.getCopia(usuarioLogIn)
 		RepositorioRecetas.getInstance.recetas.add(copia)
 	}
 		
