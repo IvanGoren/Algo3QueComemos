@@ -7,10 +7,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class BusquedasTops implements IBusquedaObservador, IBusquedaStrategy {
 	
-	HashMap<String, Integer> registro 
-	
+	HashMap<Receta, Integer> registro 
+	Receta receta
 	new () {
-		registro = new HashMap<String, Integer> ()
+		registro = new HashMap<Receta, Integer> ()
 	}
 	
 	override recibirNotificacion(Usuario unUsuario, List<Receta> data) {
@@ -21,19 +21,19 @@ class BusquedasTops implements IBusquedaObservador, IBusquedaStrategy {
 	}
 	private def procesar(Usuario unUsuario, List<Receta> data) {
 		data.forEach [
-			val nombre = it.nombre; 
-			var valor_actual = registro.get(nombre) 
+//			val nombre = it.nombre; 
+			var valor_actual = registro.get(receta) 
 			if (valor_actual == null) {
 				valor_actual = 0
 			}
-			registro.put(nombre, valor_actual +1)
+			registro.put(receta, valor_actual +1)
 		]
 	}
 	
 	
-	def int registroPorReceta(String nombre)
+	def int registroPorReceta(Receta receta)
 	{
-		var valor_actual = registro.get(nombre) 
+		var valor_actual = registro.get(receta) 
 		if (valor_actual == null) {
 			valor_actual = 0
 		}

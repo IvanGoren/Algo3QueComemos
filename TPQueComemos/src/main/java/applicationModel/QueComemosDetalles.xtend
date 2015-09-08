@@ -18,10 +18,6 @@ class QueComemosDetalles {
 		favorita = usuarioLogIn.recetasFavoritas.contains(recetaSeleccionada)
 	}
 	
-//	no funciona porque hay que tratarlo como singleton
-	def setFavorita(){
-		usuarioLogIn.agregarAFavoritas(recetaSeleccionada)
-	}
 	
 	def getNuevoNombre(){
 		if(nuevoNombre==""){

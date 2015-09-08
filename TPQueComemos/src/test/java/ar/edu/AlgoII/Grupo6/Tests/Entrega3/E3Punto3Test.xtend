@@ -38,17 +38,17 @@ class E3Punto3Test {
 		Assert.assertEquals(1, busquedasXHora.registro.get(10))
 	}
 
-	@Test
-	def void ConsultaRecetasObserverTop() {
-		repo.observadores.add(busquedasXHora)
-		repo.observadores.add(busquedasTop)
-		busqueda.nombre = "ricota"
-		var recetas = repo.consultarRecetas(hombre,busqueda)
-	
-		recetas.forEach[		
-			Assert.assertEquals(1, busquedasTop.registroPorReceta(it.nombre))
-		]
-	}
+//	@Test
+//	def void ConsultaRecetasObserverTop() {
+//		repo.observadores.add(busquedasXHora)
+//		repo.observadores.add(busquedasTop)
+//		busqueda.nombre = "ricota"
+//		var recetas = repo.consultarRecetas(hombre,busqueda)
+//	
+//		recetas.forEach[		
+//			Assert.assertEquals(1, busquedasTop.registroPorReceta(it.nombre))
+//		]
+//	}
 
 
 

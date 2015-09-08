@@ -27,6 +27,8 @@ class QueComemosBuscador {
 	String temporada
 	List<Receta> resultado
 	boolean aceptarFiltro
+	String labelResultado
+	
 	static QueComemosBuscador instance = null
 	
 	static  def QueComemosBuscador getInstance(){
@@ -52,6 +54,10 @@ class QueComemosBuscador {
 			usuarioLogIn.nombre = "usuario sin registrar"
 		}
 		repositorio = RepositorioRecetas.getInstance
+
+		this.getRecetasIniciales(usuarioLogIn)
+
+		//DATOS PARA PRUEBAS//
 
 		val recetaAux = new Receta()
 		recetaAux.setAcceso(new RecetaAccesoPrivado(usuarioLogIn))
@@ -111,6 +117,16 @@ class QueComemosBuscador {
 			resultado = repositorio.buscarPorDificultad(dificultad, resultado)
 			resultado = repositorio.buscarPorTemporada(temporada, resultado)
 			resultado = repositorio.buscarPorIngrediente(ingrediente, resultado)
+			labelResultado = "Estos son los resultados de tu busqueda"
+		}
+	}
+	
+	def void getRecetasIniciales(Usuario unUsuario){
+		if(unUsuario.recetasFavoritas.size>0){
+			resultado.addAll(unUsuario.recetasFavoritas)
+			labelResultado = "Estas son tus recetas favoritas"
+		} else {
+			labelResultado = "Estas son las recetas TOPs"
 		}
 	}
 		

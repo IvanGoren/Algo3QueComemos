@@ -118,23 +118,17 @@ class SharedTestComponents {
 		papa.nombre = "Papa"
 		papa.tipoDeAlimento = new Alimento("PAPA")
 		papa.cantidadEnGr = 500
-
+		
 		val leche = new Ingrediente()
 		leche.nombre = "Leche"
 		leche.tipoDeAlimento = new Alimento("LECHE")
 		leche.cantidadEnGr = 500
-
-		//unaReceta.ingredientes.add(papa)
 		recetaBuilder.agregarIngrediente(papa)
-
-		//unaReceta.ingredientes.add(leche)
 		recetaBuilder.agregarIngrediente(leche)
-
-		//unaReceta.calorias = 100
 		recetaBuilder.setCalorias(100)
+		recetaBuilder.setNombre("Pure de papa")
 		recetaBuilder.setTemporada("Otoño")
 
-		//return unaReceta;
 		recetaBuilder.build()
 	}
 

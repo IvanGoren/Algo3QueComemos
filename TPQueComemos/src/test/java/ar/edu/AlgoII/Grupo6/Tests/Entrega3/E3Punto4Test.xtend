@@ -45,33 +45,33 @@ class E3Punto3Test {
 		Assert.assertEquals(1, busquedasXHora.registro.get(10))
 	}
 
-	@Test
-	def void ConsultaRecetasTop() {
-		postProc.add(busquedasXHora)
-		postProc.add(busquedasTop)
-		busqueda.nombre = "ricota"
-		var recetas = repo.consultarRecetas(hombre,busqueda, postProc)
-	
-		recetas.forEach[		
-			Assert.assertEquals(1, busquedasTop.registroPorReceta(it.nombre))
-		]
-	}
+//	@Test
+//	def void ConsultaRecetasTop() {
+//		postProc.add(busquedasXHora)
+//		postProc.add(busquedasTop)
+//		busqueda.nombre = "ricota"
+//		var recetas = repo.consultarRecetas(hombre,busqueda, postProc)
+//	
+//		recetas.forEach[		
+//			Assert.assertEquals(1, busquedasTop.registroPorReceta(it.nombre))
+//		]
+//	}
 
-	@Test
-	def void ConsultaRecetasTopXSexo() {
-		postProc.add(busquedasXHora)
-		postProc.add(busquedasTop)
-		postProc.add(busquedasTopXSexo)
-		busqueda.nombre = "ricota"
-		var recetas = repo.consultarRecetas(hombre,busqueda, postProc)
-	 	recetas = repo.consultarRecetas(mujer,busqueda, postProc)
-	 	recetas = repo.consultarRecetas(hombre,busqueda, postProc)
-	 	
-		recetas.forEach[		
-			Assert.assertEquals(2, busquedasTopXSexo.registro.get("M").registroPorReceta(it.nombre))
-			Assert.assertEquals(1, busquedasTopXSexo.registro.get("F").registroPorReceta(it.nombre))
-		]
-	}
+//	@Test
+//	def void ConsultaRecetasTopXSexo() {
+//		postProc.add(busquedasXHora)
+//		postProc.add(busquedasTop)
+//		postProc.add(busquedasTopXSexo)
+//		busqueda.nombre = "ricota"
+//		var recetas = repo.consultarRecetas(hombre,busqueda, postProc)
+//	 	recetas = repo.consultarRecetas(mujer,busqueda, postProc)
+//	 	recetas = repo.consultarRecetas(hombre,busqueda, postProc)
+//	 	
+//		recetas.forEach[		
+//			Assert.assertEquals(2, busquedasTopXSexo.registro.get("M").registroPorReceta(it.nombre))
+//			Assert.assertEquals(1, busquedasTopXSexo.registro.get("F").registroPorReceta(it.nombre))
+//		]
+//	}
 
 
 

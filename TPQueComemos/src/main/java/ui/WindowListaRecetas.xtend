@@ -126,6 +126,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	//Metodo para crear grilla de recetas//
 	def createGrillaRecetas(Panel mainPanel) {
+		new Label(mainPanel).bindValueToProperty("labelResultado")
 		val gridReceta = new Table(mainPanel, typeof(Receta)) => [
 			width = 2000
 			height = 200

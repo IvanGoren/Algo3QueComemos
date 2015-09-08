@@ -5,6 +5,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.UserException
+import ar.edu.AlgoII.Grupo6.Tests.SharedTestComponents
 
 @Accessors
 @Observable
@@ -88,6 +89,7 @@ class RepoUsuarios {
 		val user1 = new Usuario(0,0)
 		user1.nombre = "Clark Kent"
 		user1.clave = "cLark"
+		user1.agregarAFavoritas(SharedTestComponents.getBifeConPure())
 		
 		val user2 = new Usuario(0,0)
 		user2.nombre = "Lana Lang"
