@@ -13,7 +13,16 @@ class RepositorioRecetas implements IFiltro {
 	Buscador buscador
 	Receta recetaSeleccionada
 	List<IBusquedaObservador> buscadores
+	static RepositorioRecetas instance = null 
 
+	static def getInstance(){
+		if(instance == null)
+		{
+			instance = new RepositorioRecetas()
+		}
+		instance
+	}
+	
 	new() {
 		recetas = new ArrayList<Receta>
 		recetas.add(getRecetaPrueba())

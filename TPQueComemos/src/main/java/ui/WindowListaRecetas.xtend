@@ -185,6 +185,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 		val elementSelected = new NotNullObservable("recetaSeleccionada")
 		new Button(panelAcciones) => [
 			caption = "Ver"
+			width = 200
 			onClick = [|
 				this.openDialog(new WindowReceta(this, 
 					new QueComemosDetalles()=>[
@@ -199,14 +200,29 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 		new Button(panelAcciones) => [
 			caption = "Favorita"
+			width = 210
 			onClick[|modelObject.agregarFavorita()]
+			bindEnabled(elementSelected)
+		]
+		
+		new Button(panelAcciones) => [
+			caption = "Copiar"
+			width = 210
+			onClick[
+			this.openDialog(new WindowCopiarReceta(this, 
+					new QueComemosDetalles()=>[
+						recetaSeleccionada = modelObject.recetaSeleccionada
+						usuarioLogIn = modelObject.usuarioLogIn
+					]
+					))
+				]
 			bindEnabled(elementSelected)
 		]
 		
 		new Button(panelesHorizontales)=>[
 			caption = "Salir"
 			background = Color.BLUE
-			width = 300
+			width = 420
 			onClick[
 				this.close
 			]
@@ -216,7 +232,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 
 	def openDialog(Dialog<?> dialog) {
 
-		//		dialog.onAccept[|modelObject.search]
+		dialog.onAccept[|modelObject.search]
 		dialog.open
 	}
 

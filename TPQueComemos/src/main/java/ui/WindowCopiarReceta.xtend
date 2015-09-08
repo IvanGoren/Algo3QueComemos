@@ -16,13 +16,14 @@ import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.TextBox
 import applicationModel.QueComemosBuscador
 import org.uqbar.arena.widgets.Button
+import applicationModel.QueComemosDetalles
 
-class WindowCopiarReceta extends TransactionalDialog<QueComemosBuscador> {
+class WindowCopiarReceta extends TransactionalDialog<QueComemosDetalles> {
 //	new() {
 //		super(new Receta)
 //	}
 
-	new(WindowOwner owner, QueComemosBuscador model) {
+	new(WindowOwner owner, QueComemosDetalles model) {
 		super(owner, model)
 		title = "Copiando Receta"
 	}
@@ -36,13 +37,19 @@ class WindowCopiarReceta extends TransactionalDialog<QueComemosBuscador> {
 	override createContents(Panel mainPanel) {
 		val panel1 = new Panel(mainPanel).setLayout(new HorizontalLayout)
 		new Label(panel1).text = "Receta:"
-		new Label(panel1).text = "Dulce de Leche con Chocolate"
+		new Label(panel1).bindValueToProperty( "recetaSeleccionada.nombre")
 		
 		val panel2 = new Panel(mainPanel).setLayout(new HorizontalLayout)
 		new Label(panel2).text = "Nombre de copia"
-		new TextBox(panel2)
+		new TextBox(panel2).bindValueToProperty("nuevoNombre")
 		
-		new Button(mainPanel).caption = "Copiar"		
+		new Button(mainPanel)=>[
+			caption = "Copiar"
+			onClick[
+				modelObject.copiarReceta
+				this.accept
+			]
+			]		
 	}
 		
 }

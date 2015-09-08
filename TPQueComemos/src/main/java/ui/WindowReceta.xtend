@@ -17,6 +17,7 @@ import java.util.ArrayList
 import java.util.List
 import java.awt.Color
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.bindings.NotNullObservable
 
 class WindowReceta extends TransactionalDialog<QueComemosDetalles> {
 
@@ -103,6 +104,7 @@ class WindowReceta extends TransactionalDialog<QueComemosDetalles> {
 		new Label(panelCheck1).text = "Favorita"
 		new CheckBox(panelCheck1)=>[
 			bindValueToProperty("favorita")
+			bindEnabled(new NotNullObservable("siempreNulo"))
 			]
 		
 		val footPanel = new Panel(mainPanel)

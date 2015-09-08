@@ -39,7 +39,7 @@ class QueComemosBuscador {
 		usuarioLogIn.setPeso(1.88)
 		usuarioLogIn.filtros.add(new FiltroStrategyPorSobrePeso)
 		}
-		repositorio = new RepositorioRecetas
+		repositorio = RepositorioRecetas.getInstance
 		
 		val recetaAux = new Receta()
 		recetaAux.setAcceso(new RecetaAccesoPrivado(usuarioLogIn))

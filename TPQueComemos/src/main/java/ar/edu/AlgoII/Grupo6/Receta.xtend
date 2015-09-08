@@ -61,4 +61,20 @@ class Receta implements IComponente {
 		ingredientes.exists[i|i.tieneIngrediente(nombre.toLowerCase)]
 	}
 	
+	def Receta getCopia() {
+		var aux = new Receta()
+		aux.nombre = nombre
+
+		aux.ingredientes = ingredientes
+		aux.pasos = pasos
+		aux.calorias = calorias
+		aux.dificultad = dificultad
+		aux.temporada = temporada
+		aux.acceso = acceso
+		aux.condimentos = condimentos
+		aux.condicionesPreexistentes = condicionesPreexistentes
+		
+		aux
+	}
+	
 }
