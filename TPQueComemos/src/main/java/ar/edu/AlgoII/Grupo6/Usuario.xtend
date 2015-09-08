@@ -23,6 +23,7 @@ class Usuario implements IAceptaSugerencias {
 	boolean guardarSiempreFavoritas
 	List<IFiltroStrategy> filtros
 	RutinaEjercicio rutinaDeEjercicio
+	List<Receta> ultimasRecetasConsultadas
 
 	new(double elPeso, double laAltura) {
 		peso = elPeso
@@ -32,6 +33,7 @@ class Usuario implements IAceptaSugerencias {
 		comidasQueNoGustan = new ArrayList<String>()
 		condicionesPreexistentes = new ArrayList<CondicionPreexistente>()
 		recetasFavoritas = new ArrayList<Receta>()
+		ultimasRecetasConsultadas = new ArrayList<Receta>()
 		grupos = new ArrayList<Grupo>()
 		guardarSiempreFavoritas = false
 		filtros = new ArrayList<IFiltroStrategy> 
@@ -121,6 +123,10 @@ class Usuario implements IAceptaSugerencias {
 		this.condicionesPreexistentes = unUsuario.condicionesPreexistentes
 		this.recetasFavoritas = unUsuario.recetasFavoritas
 		this.grupos = unUsuario.grupos
+	}
+	
+	def ultimaConsulta(Receta receta) {
+		
 	}
 
 }

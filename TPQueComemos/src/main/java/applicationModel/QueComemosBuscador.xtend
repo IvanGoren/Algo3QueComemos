@@ -108,7 +108,7 @@ class QueComemosBuscador {
 	}
 
 	def void search() {
-		if (aceptarFiltro.equals(true)) {
+		if (aceptarFiltro) {
 			resultado = repositorio.filtrarConFiltrosUsuario(usuarioLogIn)
 		} else {
 			resultado = repositorio.getRecetasVisiblesPor(usuarioLogIn).toList
@@ -125,7 +125,10 @@ class QueComemosBuscador {
 		if(unUsuario.recetasFavoritas.size>0){
 			resultado.addAll(unUsuario.recetasFavoritas)
 			labelResultado = "Estas son tus recetas favoritas"
-		} else {
+		} else if(usuarioLogIn.ultimasRecetasConsultadas.size>0) {
+			resultado.addAll(unUsuario.ultimasRecetasConsultadas)
+			labelResultado = "Estas son tus ultimas consultas"
+		} else{
 			labelResultado = "Estas son las recetas TOPs"
 		}
 	}
@@ -139,4 +142,9 @@ class QueComemosBuscador {
 		temporada = null
 		ingrediente = null
 	}
+	
+	def recetaRevisada() {
+		usuarioLogIn.ultimaConsulta(recetaSeleccionada)
+	}
+	
 }

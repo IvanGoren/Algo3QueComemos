@@ -185,6 +185,7 @@ class WindowListaRecetas extends SimpleWindow<QueComemosBuscador> {
 			caption = "Ver"
 			width = 250
 			onClick = [|
+				modelObject.recetaRevisada
 				this.openDialog(
 					new WindowReceta(
 						this,

@@ -95,7 +95,8 @@ class RepoUsuarios {
 		user2.nombre = "Lana Lang"
 		user2.clave = "lAna"
 		
-		val user3 = new Usuario(0,0)
+		val user3 = SharedTestComponents.getUsuarioConSobrepeso
+		user3.filtros.add(new FiltroStrategyPorSobrePeso)
 		user3.nombre = "Lex Luthor"
 		user3.clave = "lEx"
 		
