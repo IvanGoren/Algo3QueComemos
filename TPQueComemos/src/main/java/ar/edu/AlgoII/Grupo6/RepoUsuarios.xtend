@@ -124,7 +124,6 @@ class RepoUsuarios {
 		recetaDeOtro.temporada = "Verano"
 
 		RepositorioRecetas.getInstance.recetas.add(recetaDeOtro)
-	}
 
 }
 	
